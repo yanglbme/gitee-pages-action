@@ -1,11 +1,11 @@
-FROM python:latest
+FROM python:3-slim AS builder
+ADD . /app
+WORKDIR /app
 
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+RUN pip install --target=/app requests
 
-RUN pip install --upgrade --no-cache-dir requests
-
-COPY "main.py" "/main.py"
-RUN chmod +x /main.py
-
-CMD ["/main.py"]
+FROM gcr.io/distroless/python3-debian10
+COPY --from=builder /app /app
+WORKDIR /app
+ENV PYTHONPATH /app
+CMD ["/app/main.py"]
