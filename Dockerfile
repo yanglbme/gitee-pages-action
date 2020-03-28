@@ -5,6 +5,7 @@ ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade --no-cache-dir requests
 
-COPY main.py .
+COPY "main.py" "/main.py"
+RUN chmod +x /main.py
 
-CMD ["main.py","-OPTIONAL_FLAG"]
+CMD ["/main.py"]
