@@ -33,8 +33,9 @@ def spider():
             'build_directory': directory,
             'force_https': https
         }
-        res = requests.post(rebuild_url, headers=headers, data=form_data).text
-        print(f'::set-output name=result::{res}')
+        requests.post(pages_url, headers=headers, data=form_data)
+        status_code = requests.post(rebuild_url, headers=headers, data=form_data).status_code
+        print(f'::set-output name=result::{status_code}')
     except Exception as e:
         print(f'::set-output name=result::{e}')
 

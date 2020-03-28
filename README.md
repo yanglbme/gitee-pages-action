@@ -1,8 +1,6 @@
 # Gitee Pages action
 使用模拟登录，自动部署 Gitee Pages。
 
-> 目前此 action 尚未制作完成，请先别投入使用。你不妨 star 关注本项目，以便获取项目最新动态。
-
 ## 入参
 
 |  参数  |  描述  |  是否必传  |  默认值  |
@@ -11,7 +9,7 @@
 | `gitee-login-cookie` | Gitee 登录后的 cookie | 是 | - |
 | `branch` | 构建的分支 | 否 | `master` |
 | `directory` | 构建的目录 | 否 | '' |
-| `https` | 是否强制 HTTPS | 否 | `false` |
+| `https` | 是否强制 HTTPS | 否 | `true` |
 
 ## 例子
 ```yml
@@ -19,8 +17,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-        
     - name: Sync to Gitee
       uses: wearerequired/git-mirror-action@master
       env:
@@ -29,8 +25,8 @@ jobs:
           source-repo: "git@github.com:doocs/advanced-java.git"
           destination-repo: "git@gitee.com:Doocs/advanced-java.git"
 
-    - name: Rebuild Gitee Pages
-      uses: yanglbme/gitee-pages-action@v0.0.1
+    - name: Build Gitee Pages
+      uses: yanglbme/gitee-pages-action@v1.0.0
       with:
           gitee-repo: doocs/advanced-java
           gitee-login-cookie: ${{ secrets.GITEE_COOKIE }}
