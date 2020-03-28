@@ -1,5 +1,9 @@
 # Gitee Pages action
-使用模拟登录，自动部署 Gitee Pages。
+[![actions status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE)
+
+无须人工操作，自动将 GitHub 仓库部署至 Gitee Pages。
+
+![](/images/rebuild_gitee_pages.png)
 
 ## 入参
 
@@ -11,8 +15,18 @@
 | `directory` | 构建的目录 | 否 | '' |
 | `https` | 是否强制 HTTPS | 否 | `true` |
 
-## 例子
+## 示例
+以下是一个完整示例。
+
+在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 `sync.yml` 文件，内容如下：
+
 ```yml
+name: Sync
+
+on:
+  push:
+    branches: [ master ]
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,15 +34,20 @@ jobs:
     - name: Sync to Gitee
       uses: wearerequired/git-mirror-action@master
       env:
+          # 注意在 Settings->Secrets 配置GITEE_RSA_PRIVATE_KEY
           SSH_PRIVATE_KEY: ${{ secrets.GITEE_RSA_PRIVATE_KEY }}
       with:
+          # 注意替换为你的 GitHub 源仓库地址
           source-repo: "git@github.com:doocs/advanced-java.git"
+          # 注意替换为你的 Gitee 目标仓库地址
           destination-repo: "git@gitee.com:Doocs/advanced-java.git"
 
     - name: Build Gitee Pages
       uses: yanglbme/gitee-pages-action@v1.0.0
       with:
+          # 注意替换为你的 Gitee 仓库
           gitee-repo: doocs/advanced-java
+          # 注意在 Settings->Secrets 配置GITEE_COOKIE
           gitee-login-cookie: ${{ secrets.GITEE_COOKIE }}
           branch: master
 ```
