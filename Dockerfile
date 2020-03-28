@@ -1,11 +1,10 @@
-FROM python:3.7-slim
+FROM python:latest
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
 RUN pip install --upgrade --no-cache-dir requests
 
-COPY "entrypoint.sh" "/entrypoint.sh"
-RUN chmod +x /entrypoint.sh
+COPY main.py .
 
-ENTRYPOINT ["/entrypoint.sh"]
+CMD ["main.py","-OPTIONAL_FLAG"]
