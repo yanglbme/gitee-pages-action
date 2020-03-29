@@ -5,11 +5,14 @@ branding:
   icon: 'git-branch'
   color: 'gray-dark'
 inputs:
+  gitee-username:
+    description: 'The Gitee username, like yanglbme'
+    require: true
+  gitee-password:
+    description: 'The Gitee password'
+    require: true
   gitee-repo:
     description: 'The Gitee repository, like doocs/leetcode'
-    required: true
-  gitee-login-cookie:
-    description: 'The Gitee login cookie, like gitee-session-n=BAh7CUkiD...'
     required: true
   branch:
     description: 'Which branch to build'

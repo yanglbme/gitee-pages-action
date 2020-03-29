@@ -3,6 +3,7 @@ ADD . /app
 WORKDIR /app
 
 RUN pip install --target=/app requests
+RUN pip install --target=/app rsa
 
 FROM gcr.io/distroless/python3-debian10
 COPY --from=builder /app /app
