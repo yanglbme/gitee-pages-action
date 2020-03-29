@@ -1,9 +1,17 @@
-# Gitee Pages action
+<p align="center">
+  <a href="https://github.com/yanglbme/gitee-pages-action">
+    <img src="./images/logo.png">
+  </a>
+</p>
+<h1 align="center">Gitee Pages Action</h1>
+
+<div align="center">
+
 [![actions status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE)
 
-使用 `GitHub Pages` 时，每当项目有更新，Github 会自动帮我们重新部署 `GitHub Pages`。
+</div>
 
-而对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非你开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
+使用 `GitHub Pages` 时，每当项目有更新，Github 会自动帮我们重新部署 `GitHub Pages`。对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非我们开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
 
 - 花钱开通 `Pro` 功能，￥99/年。
 - Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
@@ -68,6 +76,10 @@ jobs:
 - `GITEE_PASSWORD`: 存放你的 Gitee 账户密码。
 
 ![](/images/add_secrets.png)
+
+如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们可能会收到一封来自 Gitee 的告警邮件/站内信。放心，这是 GitHub Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署钮。
+
+![](/images/gitee_warn.png)
 
 ## 许可证
 [MIT](LICENSE)
