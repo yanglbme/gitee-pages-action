@@ -5,10 +5,10 @@
 
 而对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非你开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
 
-- Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
 - 花钱开通 `Pro` 功能，￥99/年。
+- Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
 
-为了帮助更多朋友实现 Gitee Pages 的自动部署，我开发了 Gitee Pages Action，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。
+为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。
 
 ## 入参
 
@@ -49,7 +49,7 @@ jobs:
           destination-repo: "git@gitee.com:Doocs/advanced-java.git"
 
     - name: Build Gitee Pages
-      uses: yanglbme/gitee-pages-action@v1.1.0
+      uses: yanglbme/gitee-pages-action@master
       with:
           # 注意替换为你的 Gitee 用户名
           gitee-username: yanglbme
