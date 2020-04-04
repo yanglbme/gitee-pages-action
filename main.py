@@ -2,7 +2,6 @@ import base64
 import os
 import random
 import re
-import sys
 
 import requests
 import rsa
@@ -68,9 +67,13 @@ def get_csrf_token(html):
 
 
 class Spider:
-
-    def __init__(self, username, password,
-                 repo, branch='master', directory='', https=True):
+    def __init__(self,
+                 username,
+                 password,
+                 repo,
+                 branch='master',
+                 directory='',
+                 https=True):
         self.session = requests.session()
         self.username = username
         self.password = password
@@ -85,9 +88,10 @@ class Spider:
         form_data = {'user_login': self.username}
 
         index_headers = {
-            'Accept': 'text/html,application/xhtml+xml,application/xml;'
-                      'q=0.9,image/webp,image/apng,*/*;'
-                      'q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept':
+                'text/html,application/xhtml+xml,application/xml;'
+                'q=0.9,image/webp,image/apng,*/*;'
+                'q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Host': 'gitee.com',
             'User-Agent': random.choice(USER_AGENTS)
         }
@@ -118,14 +122,14 @@ class Spider:
             resp = self.session.post(login_index_url,
                                      headers=index_headers,
                                      data=form_data)
-            print(resp.text)
+            return '个人主页' in resp.text
         except Exception as e:
-            print(f'::set-output name=result::{e}')
-            sys.exit(1)
+            print(f'登录请求出错，错误信息：{e}')
+            return False
 
     def build_pages(self):
         pages_url = f'https://gitee.com/{self.repo}/pages'
-        rebuild_url = f'https://gitee.com/{self.repo}/pages/rebuild'
+        rebuild_url = f'{pages_url}/rebuild'
         try:
             pages = self.session.get(pages_url)
             csrf_token = get_csrf_token(pages.text)
@@ -144,19 +148,18 @@ class Spider:
                 'force_https': self.https
             }
             self.session.post(pages_url, headers=headers, data=form_data)
-            status_code = self.session.post(rebuild_url,
-                                            headers=headers,
-                                            data=form_data).status_code
-            print(f'::set-output name=result::{status_code}')
+            resp = self.session.post(rebuild_url,
+                                     headers=headers,
+                                     data=form_data)
+            return resp.status_code == 200
         except Exception as e:
-            print(f'::set-output name=result::{e}')
-            sys.exit(1)
+            print(f'部署请求出错，错误信息：{e}')
+            return False
 
-    def run(self):
-        self.login()
-        self.build_pages()
+    def __call__(self, *args, **kwargs):
+        res = self.login() and self.build_pages()
+        print(f'::set-output name=result::{res}')
 
 
 if __name__ == '__main__':
-    spider = Spider(username, password, repo, branch, directory, https)
-    spider.run()
+    Spider(username, password, repo, branch, directory, https)()
