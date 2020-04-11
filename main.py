@@ -147,7 +147,7 @@ class Spider:
                 'build_directory': self.directory,
                 'force_https': self.https
             }
-            self.session.post(pages_url, headers=headers, data=form_data)
+            # self.session.post(pages_url, headers=headers, data=form_data)
             resp = self.session.post(rebuild_url,
                                      headers=headers,
                                      data=form_data)

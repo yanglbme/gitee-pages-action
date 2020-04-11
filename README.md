@@ -18,6 +18,8 @@
 
 为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。
 
+注：首次需要手动构建。
+
 ## 入参
 
 |  参数  |  描述  |  是否必传  |  默认值  |
