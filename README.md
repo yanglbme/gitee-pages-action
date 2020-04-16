@@ -11,14 +11,16 @@
 
 </div>
 
-使用 `GitHub Pages` 时，每当项目有更新，Github 会自动帮我们重新部署 `GitHub Pages`。对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非我们开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
+使用 `GitHub Pages` 时，每当项目有更新，GitHub 会自动帮我们重新部署 `GitHub Pages`。对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非我们开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
 
 - 花钱开通 `Pro` 功能，￥99/年。
 - Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
 
 为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。
 
-注：首次需要手动构建。
+目前，我维护的多个仓库都使用了 Gitee Pages Action 成功进行自动部署，如：[jvm](https://github.com/doocs/jvm/blob/master/.github/workflows/sync.yml), [advanced-java](https://github.com/doocs/advanced-java/blob/master/.github/workflows/sync.yml)。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
+
+注：首次需要手动登录 Gitee 点击构建。
 
 ## 入参
 
