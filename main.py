@@ -6,12 +6,6 @@ import re
 import requests
 import rsa
 
-username = os.environ['INPUT_GITEE-USERNAME']
-password = os.environ['INPUT_GITEE-PASSWORD']
-repo = os.environ['INPUT_GITEE-REPO']
-branch = os.environ['INPUT_BRANCH']
-directory = os.environ['INPUT_DIRECTORY']
-https = os.environ['INPUT_HTTPS']
 
 PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY
@@ -60,27 +54,21 @@ USER_AGENTS = [
 ]
 
 
-def get_csrf_token(html):
-    return re.search(
-        '<meta content="authenticity_token" name="csrf-param" />(.*?)'
-        '<meta content="(.*?)" name="csrf-token" />', html, re.S).group(2)
-
-
-class Spider:
-    def __init__(self,
-                 username,
-                 password,
-                 repo,
-                 branch='master',
-                 directory='',
-                 https=True):
+class Action:
+    def __init__(self):
         self.session = requests.session()
-        self.username = username
-        self.password = password
-        self.repo = repo
-        self.branch = branch
-        self.directory = directory
-        self.https = https
+        self.username = os.environ['INPUT_GITEE-USERNAME']
+        self.password = os.environ['INPUT_GITEE-PASSWORD']
+        self.repo = os.environ['INPUT_GITEE-REPO']
+        self.branch = os.environ['INPUT_BRANCH'] or 'master'
+        self.directory = os.environ['INPUT_DIRECTORY'] or ''
+        self.https = os.environ['INPUT_HTTPS'] or True
+
+    @staticmethod
+    def get_csrf_token(html):
+        return re.search(
+            '<meta content="authenticity_token" name="csrf-param" />(.*?)'
+            '<meta content="(.*?)" name="csrf-token" />', html, re.S).group(2)
 
     def login(self):
         login_index_url = 'https://gitee.com/login'
@@ -97,7 +85,7 @@ class Spider:
         }
         try:
             resp = self.session.get(login_index_url, headers=index_headers)
-            csrf_token = get_csrf_token(resp.text)
+            csrf_token = self.get_csrf_token(resp.text)
             headers = {
                 'Referer': 'https://gitee.com/login',
                 'X-Requested-With': 'XMLHttpRequest',
@@ -122,18 +110,17 @@ class Spider:
             resp = self.session.post(login_index_url,
                                      headers=index_headers,
                                      data=form_data)
-            return '个人主页' in resp.text
+            return '个人主页' in resp.text or '我的工作台' in resp.text
         except Exception as e:
-            print(f'登录请求出错，错误信息：{e}')
+            print(f'login error occurred, message: {e}')
             return False
 
-    def build_pages(self):
+    def rebuild_pages(self):
         pages_url = f'https://gitee.com/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
         try:
             pages = self.session.get(pages_url)
-            csrf_token = get_csrf_token(pages.text)
-
+            csrf_token = self.get_csrf_token(pages.text)
             headers = {
                 'Content-Type':
                     'application/x-www-form-urlencoded; charset=UTF-8',
@@ -147,19 +134,18 @@ class Spider:
                 'build_directory': self.directory,
                 'force_https': self.https
             }
-            # self.session.post(pages_url, headers=headers, data=form_data)
             resp = self.session.post(rebuild_url,
                                      headers=headers,
                                      data=form_data)
             return resp.status_code == 200
         except Exception as e:
-            print(f'部署请求出错，错误信息：{e}')
+            print(f'deploy error occurred, message: {e}')
             return False
 
     def __call__(self, *args, **kwargs):
-        res = self.login() and self.build_pages()
+        res = self.login() and self.rebuild_pages()
         print(f'::set-output name=result::{res}')
 
 
 if __name__ == '__main__':
-    Spider(username, password, repo, branch, directory, https)()
+    Action()()
