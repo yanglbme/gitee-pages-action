@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/yanglbme/gitee-pages-action">
-    <img src="./images/logo.png">
+    <img src="./images/logo.svg">
   </a>
 </p>
 <h1 align="center">Gitee Pages Action</h1>

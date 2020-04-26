@@ -6,7 +6,6 @@ import re
 import requests
 import rsa
 
-
 PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY
 qVTFdpU01kCDUmClczJOCGZriLNMrshmN9NJxazpqizPthwS1OIK3HwRLEP9D3GL
@@ -77,14 +76,18 @@ class Action:
 
         index_headers = {
             'Accept':
-                'text/html,application/xhtml+xml,application/xml;'
-                'q=0.9,image/webp,image/apng,*/*;'
-                'q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Host': 'gitee.com',
-            'User-Agent': random.choice(USER_AGENTS)
+            'text/html,application/xhtml+xml,application/xml;'
+            'q=0.9,image/webp,image/apng,*/*;'
+            'q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Host':
+            'gitee.com',
+            'User-Agent':
+            random.choice(USER_AGENTS)
         }
         try:
-            resp = self.session.get(login_index_url, headers=index_headers)
+            resp = self.session.get(login_index_url,
+                                    headers=index_headers,
+                                    timeout=5)
             csrf_token = self.get_csrf_token(resp.text)
             headers = {
                 'Referer': 'https://gitee.com/login',
@@ -92,7 +95,10 @@ class Action:
                 'X-CSRF-Token': csrf_token,
                 'User-Agent': random.choice(USER_AGENTS)
             }
-            self.session.post(check_login_url, headers=headers, data=form_data)
+            self.session.post(check_login_url,
+                              headers=headers,
+                              data=form_data,
+                              timeout=5)
             data = f'{csrf_token}$gitee${self.password}'
             pubkey = rsa.PublicKey.load_pkcs1_openssl_pem(PUBLIC_KEY.encode())
             encrypt_data = rsa.encrypt(data.encode(), pubkey)
@@ -109,7 +115,8 @@ class Action:
             }
             resp = self.session.post(login_index_url,
                                      headers=index_headers,
-                                     data=form_data)
+                                     data=form_data,
+                                     timeout=5)
             return '个人主页' in resp.text or '我的工作台' in resp.text
         except Exception as e:
             print(f'login error occurred, message: {e}')
@@ -123,7 +130,7 @@ class Action:
             csrf_token = self.get_csrf_token(pages.text)
             headers = {
                 'Content-Type':
-                    'application/x-www-form-urlencoded; charset=UTF-8',
+                'application/x-www-form-urlencoded; charset=UTF-8',
                 'Referer': pages_url,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-Token': csrf_token,
@@ -136,7 +143,8 @@ class Action:
             }
             resp = self.session.post(rebuild_url,
                                      headers=headers,
-                                     data=form_data)
+                                     data=form_data,
+                                     timeout=5)
             return resp.status_code == 200
         except Exception as e:
             print(f'deploy error occurred, message: {e}')
