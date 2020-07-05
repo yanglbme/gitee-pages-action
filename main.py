@@ -130,7 +130,8 @@ class Action:
             pages = self.session.get(pages_url)
             csrf_token = self.get_csrf_token(pages.text)
             headers = {
-                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'Content-Type': 'application/x-www-form-urlencoded; '
+                                'charset=UTF-8',
                 'Referer': pages_url,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-Token': csrf_token,
