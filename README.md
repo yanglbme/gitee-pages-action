@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/yanglbme/gitee-pages-action">
-    <img src="./images/logo.svg">
+    <img src="./images/logo.png">
   </a>
 </p>
 <h1 align="center">Gitee Pages Action</h1>
@@ -34,6 +34,7 @@
 | `https` | 是否强制 HTTPS | 否 | `true` |
 
 ## 示例
+
 以下是一个完整示例。
 
 在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 `sync.yml` 文件，内容如下：
@@ -85,4 +86,5 @@ jobs:
 ![](/images/gitee_warn.png)
 
 ## 许可证
+
 [MIT](LICENSE)

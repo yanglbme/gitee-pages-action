@@ -54,6 +54,8 @@ USER_AGENTS = [
 
 
 class Action:
+    """Gitee Pages Action"""
+
     def __init__(self):
         self.session = requests.session()
         self.username = os.environ['INPUT_GITEE-USERNAME']
@@ -70,19 +72,17 @@ class Action:
             '<meta content="(.*?)" name="csrf-token" />', html, re.S).group(2)
 
     def login(self):
+        """登录主入口"""
         login_index_url = 'https://gitee.com/login'
         check_login_url = 'https://gitee.com/check_user_login'
         form_data = {'user_login': self.username}
 
         index_headers = {
-            'Accept':
-            'text/html,application/xhtml+xml,application/xml;'
-            'q=0.9,image/webp,image/apng,*/*;'
-            'q=0.8,application/signed-exchange;v=b3;q=0.9',
-            'Host':
-            'gitee.com',
-            'User-Agent':
-            random.choice(USER_AGENTS)
+            'Accept': 'text/html,application/xhtml+xml,application/xml;'
+                      'q=0.9,image/webp,image/apng,*/*;'
+                      'q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Host': 'gitee.com',
+            'User-Agent': random.choice(USER_AGENTS)
         }
         try:
             resp = self.session.get(login_index_url,
@@ -123,14 +123,14 @@ class Action:
             return False
 
     def rebuild_pages(self):
+        """重新构建Pages"""
         pages_url = f'https://gitee.com/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
         try:
             pages = self.session.get(pages_url)
             csrf_token = self.get_csrf_token(pages.text)
             headers = {
-                'Content-Type':
-                'application/x-www-form-urlencoded; charset=UTF-8',
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                 'Referer': pages_url,
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-Token': csrf_token,
@@ -150,10 +150,11 @@ class Action:
             print(f'deploy error occurred, message: {e}')
             return False
 
-    def __call__(self, *args, **kwargs):
+    def run(self):
         res = self.login() and self.rebuild_pages()
         print(f'::set-output name=result::{res}')
 
 
 if __name__ == '__main__':
-    Action()()
+    action = Action()
+    action.run()
