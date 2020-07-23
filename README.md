@@ -87,33 +87,27 @@ jobs:
 
 <table>
     <tr>
-      <td align="center" style="width: 60px;">
+      <td align="center" style="width: 80px;">
         <a href="https://github.com/antvis">
           <img src="https://imgkr.cn-bj.ufileos.com/d1a68687-9472-4a3d-ae11-a43b030677b3.png" style="width: 40px;"><br>
           <sub>蚂蚁金服 - 数据可视化</sub>
         </a>
       </td>
-      <td align="center" style="width: 60px;">
+      <td align="center" style="width: 80px;">
         <a href="https://github.com/doocs">
           <img src="https://imgkr.cn-bj.ufileos.com/50aacc12-bca0-409a-a497-c211f111e30c.png" style="width: 40px;"><br>
           <sub>Doocs技术社区</sub>
         </a>
       </td>
-      <td align="center" style="width: 60px;">
+      <td align="center" style="width: 80px;">
         <a href="https://github.com/youzan">
           <img src="https://imgkr.cn-bj.ufileos.com/dd3b7807-d81e-4f2a-9051-fdcc30fa070c.jpg" style="width: 40px;"><br>
           <sub>有赞</sub>
         </a>
       </td>
-      <td align="center" style="width: 60px;">
-        <a href="https://github.com/weizhanzhan">
-          <img src="https://imgkr.cn-bj.ufileos.com/95e874ff-5c0c-4264-b1d0-3e437dd618df.jpg" style="width: 40px;"><br>
-          <sub>Zhanwei</sub>
-        </a>
-      </td>
     </tr>
     <tr>
-        <td align="left" style="width: 60px;">
+        <td align="left" style="width: 80px;">
             <ul>
                 <li><a href="https://github.com/antvis/g">antvis/g</a></li>
                 <li><a href="https://github.com/antvis/F2">antvis/F2</a></li>
@@ -124,7 +118,7 @@ jobs:
                 <li><a href="https://github.com/antvis/antvis.github.io">antvis/antvis.github.io</a></li>
             </ul>
         </td>
-        <td align="left" style="width: 60px;">
+        <td align="left" style="width: 80px;">
             <ul>
                 <li><a href="https://github.com/doocs/jvm">doocs/jvm</a></li>
                 <li><a href="https://github.com/doocs/leetcode">doocs/leetcode</a></li>
@@ -133,16 +127,10 @@ jobs:
                 <li><a href="https://github.com/doocs/source-code-hunter">doocs/source-code-hunter</a></li>
             </ul>
         </td>
-        <td align="left" style="width: 60px;">
+        <td align="left" style="width: 80px;">
             <ul>
                 <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
                 <li><a href="https://github.com/youzan/vant">youzan/vant</a></li>
-            </ul>
-        </td>
-        <td align="left" style="width: 60px;">
-            <ul>
-                <li><a href="https://github.com/weizhanzhan/vuepress_note">weizhanzhan/vuepress_note</a></li>
-                <li><a href="https://github.com/weizhanzhan/antd-vue-admin">weizhanzhan/antd-vue-admin</a></li>
             </ul>
         </td>
     </tr>
