@@ -83,6 +83,8 @@ jobs:
 
 ![](/images/gitee_warn.png)
 
+注：如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，请参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
+
 ## 谁在使用
 
 <table>
