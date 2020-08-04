@@ -89,22 +89,24 @@ jobs:
     <tr>
       <td align="center" style="width: 80px;">
         <a href="https://github.com/antvis">
-          <img src="https://imgkr.cn-bj.ufileos.com/d1a68687-9472-4a3d-ae11-a43b030677b3.png" style="width: 40px;"><br>
+          <img src="./images/antv.png" style="width: 40px;"><br>
           <sub>蚂蚁金服 - 数据可视化</sub>
         </a>
       </td>
       <td align="center" style="width: 80px;">
         <a href="https://github.com/doocs">
-          <img src="https://imgkr.cn-bj.ufileos.com/50aacc12-bca0-409a-a497-c211f111e30c.png" style="width: 40px;"><br>
+          <img src="./images/doocs.png" style="width: 40px;"><br>
           <sub>Doocs技术社区</sub>
         </a>
       </td>
       <td align="center" style="width: 80px;">
         <a href="https://github.com/youzan">
-          <img src="https://imgkr.cn-bj.ufileos.com/dd3b7807-d81e-4f2a-9051-fdcc30fa070c.jpg" style="width: 40px;"><br>
+          <img src="./images/youzan.jpg" style="width: 40px;"><br>
           <sub>有赞</sub>
         </a>
       </td>
+      
+      
     </tr>
     <tr>
         <td align="left" style="width: 80px;">
