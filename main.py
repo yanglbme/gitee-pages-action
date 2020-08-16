@@ -61,9 +61,9 @@ class Action:
         self.username = os.environ['INPUT_GITEE-USERNAME']
         self.password = os.environ['INPUT_GITEE-PASSWORD']
         self.repo = os.environ['INPUT_GITEE-REPO']
-        self.branch = os.environ['INPUT_BRANCH'] or 'master'
-        self.directory = os.environ['INPUT_DIRECTORY'] or ''
-        self.https = os.environ['INPUT_HTTPS'] or True
+        self.branch = os.environ.get('INPUT_BRANCH') or 'master'
+        self.directory = os.environ.get('INPUT_DIRECTORY') or ''
+        self.https = os.environ.get('INPUT_HTTPS') or True
 
     @staticmethod
     def get_csrf_token(html):
