@@ -66,7 +66,7 @@ jobs:
           gitee-username: yanglbme
           # 注意在 Settings->Secrets 配置 GITEE_PASSWORD
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
-          # 注意替换为你的 Gitee 仓库
+          # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
           gitee-repo: doocs/advanced-java
 ```
 
@@ -83,7 +83,10 @@ jobs:
 
 ![](/images/gitee_warn.png)
 
-注：如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，请参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
+注：
+
+1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，请参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
+2. Gitee 仓库名**严格区分大小写**，配置 Action 入参 `gitee-repo` 时请注意准确填写，详情请参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10)。
 
 ## 谁在使用
 
