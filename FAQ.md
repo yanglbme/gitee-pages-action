@@ -8,7 +8,7 @@
 
 > 参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
 
-![](https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action/images/gitee_notification.png)
+![](./images/gitee_notification.png)
 
 ## 问题 2：报 deploy error occurred, message: 'NoneType' object has no attribute 'group' 错误，怎么办？
 
@@ -20,4 +20,4 @@
 
 > 参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10)、[#12](https://github.com/yanglbme/gitee-pages-action/issues/12)。
 
-![](https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action/images/404.png)
+![](./images/404.png)
