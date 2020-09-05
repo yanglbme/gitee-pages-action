@@ -16,7 +16,7 @@
 
 这种情况，一般是 Gitee Pages Action 的参数配置错误导致，请仔细检查你的配置信息。
 
-注意：`gitee-repo` 参数严格区分大小写，请准确填写，比如 `doocs/advanced-java`，当你写成 `doocs/Advanced-java` 的时候，是访问不到的，不信你可以试试：https://gitee.com/Doocs/Advanced-java。
+注意：`gitee-repo` 参数严格区分大小写，请准确填写，比如 `doocs/advanced-java`，当你写成 `doocs/Advanced-java` 的时候，是访问不到的，不信你可以试试访问：https://gitee.com/Doocs/Advanced-java
 
 > 参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10)、[#12](https://github.com/yanglbme/gitee-pages-action/issues/12)。
 

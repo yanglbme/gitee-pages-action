@@ -7,7 +7,7 @@
 
 <div align="center">
 
-[![actions status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)
+[![actions status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![license](https://badgen.net/badge/faq/here/blue)](https://github.com/yanglbme/gitee-pages-action/wiki/FAQ) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)
 
 </div>
 
