@@ -27,9 +27,9 @@
 | `gitee-username` | Gitee 用户名 | 是 | - |
 | `gitee-password` | Gitee 密码 | 是 | - |
 | `gitee-repo` | Gitee 仓库（严格区分大小写） | 是 | - |
-| `branch` | 构建的分支 | 否 | `master` |
-| `directory` | 构建的目录 | 否 | '' |
-| `https` | 是否强制 HTTPS | 否 | `true` |
+| `branch` | 要部署的分支 | 否 | `master` |
+| `directory` | 要部署的分支上的目录 | 否 | '' |
+| `https` | 是否强制使用 HTTPS | 否 | `true` |
 
 ## 示例
 
@@ -140,6 +140,10 @@ jobs:
         </td>
     </tr>
 </table>
+
+## FAQ
+
+请查看[这里](./FAQ.md)。
 
 ## 许可证
 
