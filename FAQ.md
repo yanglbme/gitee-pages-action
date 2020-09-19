@@ -4,7 +4,7 @@
 
 因为 Gitee Pages Action 使用的是 GitHub 自家的服务器（美国），在这种情况下，当 Action 自动帮我们登录 Gitee 的时候，会触发 Gitee **帐号异常登录告警**，提示用户在非正常的 IP 地址登录了 Gitee，需要输入验证码。
 
-**解决方案**是：关注「**码云 Gitee**」​微信公众号，绑定个人微信到码云帐号。这样 Action 在登录的过程中，Gitee 就不会下发短信验证码，而是通过「**码云 Gitee**」公众号给我们发送一个登录通知，Action 就能成功登录了。
+**解决方案**是：关注「**Gitee**」微信公众号，绑定个人微信到码云帐号。这样 Action 在登录的过程中，Gitee 就不会下发短信验证码，而是通过「**Gitee**」公众号给我们发送一个登录通知，Action 就能成功登录了。
 
 > 参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
 
