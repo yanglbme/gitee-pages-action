@@ -10,7 +10,10 @@ jobs:
         with:
           python-version: "3.7"
 
-      - uses: actions/checkout@v1
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
 
       - name: Lint
         run: |
