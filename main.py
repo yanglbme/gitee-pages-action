@@ -4,6 +4,7 @@ import random
 import re
 
 import requests
+import requests.packages.urllib3
 import rsa
 
 PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
@@ -52,18 +53,21 @@ USER_AGENTS = [
     "Presto/2.9.168 Version/11.52",
 ]
 
+requests.packages.urllib3.disable_warnings()
+
 
 class Action:
     """Gitee Pages Action"""
 
-    def __init__(self, username, password, repo, branch, directory, https):
+    def __init__(self, username, password, repo,
+                 branch='master', directory='', https='true'):
         self.session = requests.session()
         self.username = username
         self.password = password
         self.repo = repo
-        self.branch = branch or 'master'
-        self.directory = directory or ''
-        self.https = https or True
+        self.branch = branch
+        self.directory = directory
+        self.https = https
 
     @staticmethod
     def get_csrf_token(html):
