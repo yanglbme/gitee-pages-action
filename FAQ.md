@@ -6,7 +6,7 @@
 
 **解决方案**是：关注「**Gitee**」微信公众号，绑定个人微信到码云帐号。这样 Action 在登录的过程中，Gitee 就不会下发短信验证码，而是通过「**Gitee**」公众号给我们发送一个登录通知，Action 就能成功登录了。
 
-> 参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
+> 参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
 
 ![](./images/gitee_notification.png)
 
@@ -18,6 +18,6 @@
 
 注意：`gitee-repo` 参数严格区分大小写，请准确填写，比如 `doocs/advanced-java`，当你写成 `doocs/Advanced-java` 的时候，是访问不到的，不信你可以试试访问：https://gitee.com/Doocs/Advanced-java
 
-> 参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10)、[#12](https://github.com/yanglbme/gitee-pages-action/issues/12)。
+> 参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 、[#12](https://github.com/yanglbme/gitee-pages-action/issues/12) 。
 
 ![](./images/404.png)

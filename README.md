@@ -16,20 +16,20 @@
 - 花钱开通 `Pro` 功能，￥ 99/年。
 - Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
 
-为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action)，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
+为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
 注：首次需要手动登录 Gitee 点击构建。
 
 ## 入参
 
-| 参数             | 描述                         | 是否必传 | 默认值   |
-| ---------------- | ---------------------------- | -------- | -------- |
-| `gitee-username` | Gitee 用户名                 | 是       | -        |
-| `gitee-password` | Gitee 密码                   | 是       | -        |
-| `gitee-repo`     | Gitee 仓库（严格区分大小写） | 是       | -        |
-| `branch`         | 要部署的分支                 | 否       | `master` |
-| `directory`      | 要部署的分支上的目录         | 否       |          |
-| `https`          | 是否强制使用 HTTPS           | 否       | `true`   |
+| 参数             | 描述                         | 是否必传 | 默认值   | 示例                            |
+| ---------------- | ---------------------------- | -------- | -------- | ------------------------------- |
+| `gitee-username` | Gitee 用户名                 | 是       | -        | `yanglbme`                      |
+| `gitee-password` | Gitee 密码                   | 是       | -        | `${{ secrets.GITEE_PASSWORD }}` |
+| `gitee-repo`     | Gitee 仓库（严格区分大小写） | 是       | -        | `doocs/advanced-java`           |
+| `branch`         | 要部署的分支                 | 否       | `master` | `main`                          |
+| `directory`      | 要部署的分支上的目录         | 否       |          | `src`                           |
+| `https`          | 是否强制使用 HTTPS           | 否       | `true`   | `false`                         |
 
 ## 示例
 
@@ -75,7 +75,7 @@ jobs:
 请确保在 GitHub 项目的 `Settings` -> `Secrets` 路径下配置好 `GITEE_RSA_PRIVATE_KEY` 以及 `GITEE_PASSWORD` 两个密钥。其中：
 
 - `GITEE_RSA_PRIVATE_KEY`: 存放你的 `id_rsa` 私钥。
-- `GITEE_PASSWORD`: 存放你的 Gitee 账户密码。
+- `GITEE_PASSWORD`: 存放你的 Gitee 帐户密码。
 
 ![](./images/add_secrets.png)
 
@@ -87,9 +87,9 @@ jobs:
 
 注：
 
-1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6)。
-2. Gitee 仓库名**严格区分大小写**，配置 Action 入参 `gitee-repo` 时请注意准确填写，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10)。
-3. 若执行 Sync 过程中 Actions 提示 `Your push would publish a private email address.`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18)。
+1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
+1. Gitee 仓库名**严格区分大小写**，配置 Action 入参 `gitee-repo` 时请注意准确填写，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
+1. 若执行 Sync 过程中 Actions 提示 `Your push would publish a private email address.`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
 
 ## 谁在使用
 
@@ -116,30 +116,30 @@ jobs:
   </tr>
   <tr>
     <td align="left" style="width: 80px;">
-        <ul>
-            <li><a href="https://github.com/antvis/g">antvis/g</a></li>
-            <li><a href="https://github.com/antvis/F2">antvis/F2</a></li>
-            <li><a href="https://github.com/antvis/G6">antvis/G6</a></li>
-            <li><a href="https://github.com/antvis/L7">antvis/L7</a></li>
-            <li><a href="https://github.com/antvis/Graphin">antvis/Graphin</a></li>
-            <li><a href="https://github.com/antvis/G2Plot">antvis/G2Plot</a></li>
-            <li><a href="https://github.com/antvis/antvis.github.io">antvis/antvis.github.io</a></li>
-        </ul>
+      <ul>
+        <li><a href="https://github.com/antvis/g">antvis/g</a></li>
+        <li><a href="https://github.com/antvis/F2">antvis/F2</a></li>
+        <li><a href="https://github.com/antvis/G6">antvis/G6</a></li>
+        <li><a href="https://github.com/antvis/L7">antvis/L7</a></li>
+        <li><a href="https://github.com/antvis/Graphin">antvis/Graphin</a></li>
+        <li><a href="https://github.com/antvis/G2Plot">antvis/G2Plot</a></li>
+        <li><a href="https://github.com/antvis/antvis.github.io">antvis/antvis.github.io</a></li>
+      </ul>
     </td>
     <td align="left" style="width: 80px;">
-        <ul>
-            <li><a href="https://github.com/doocs/jvm">doocs/jvm</a></li>
-            <li><a href="https://github.com/doocs/leetcode">doocs/leetcode</a></li>
-            <li><a href="https://github.com/doocs/advanced-java">doocs/advanced-java</a></li>
-            <li><a href="https://github.com/doocs/doocs.github.io">doocs/doocs.github.io</a></li>
-            <li><a href="https://github.com/doocs/source-code-hunter">doocs/source-code-hunter</a></li>
-        </ul>
+      <ul>
+        <li><a href="https://github.com/doocs/jvm">doocs/jvm</a></li>
+        <li><a href="https://github.com/doocs/leetcode">doocs/leetcode</a></li>
+        <li><a href="https://github.com/doocs/advanced-java">doocs/advanced-java</a></li>
+        <li><a href="https://github.com/doocs/doocs.github.io">doocs/doocs.github.io</a></li>
+        <li><a href="https://github.com/doocs/source-code-hunter">doocs/source-code-hunter</a></li>
+      </ul>
     </td>
     <td align="left" style="width: 80px;">
-        <ul>
-            <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
-            <li><a href="https://github.com/youzan/vant">youzan/vant</a></li>
-        </ul>
+      <ul>
+        <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
+        <li><a href="https://github.com/youzan/vant">youzan/vant</a></li>
+      </ul>
     </td>
   </tr>
 </table>

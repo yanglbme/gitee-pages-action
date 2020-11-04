@@ -72,7 +72,6 @@ class Action:
             '<meta content="(.*?)" name="csrf-token" />', html, re.S).group(2)
 
     def login(self):
-        """登录主入口"""
         login_index_url = 'https://gitee.com/login'
         check_login_url = 'https://gitee.com/check_user_login'
         form_data = {'user_login': self.username}
@@ -123,7 +122,6 @@ class Action:
             return False
 
     def rebuild_pages(self):
-        """重新构建Pages"""
         pages_url = f'https://gitee.com/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
         try:
