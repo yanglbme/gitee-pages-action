@@ -56,14 +56,14 @@ USER_AGENTS = [
 class Action:
     """Gitee Pages Action"""
 
-    def __init__(self):
+    def __init__(self, username, password, repo, branch, directory, https):
         self.session = requests.session()
-        self.username = os.environ['INPUT_GITEE-USERNAME']
-        self.password = os.environ['INPUT_GITEE-PASSWORD']
-        self.repo = os.environ['INPUT_GITEE-REPO']
-        self.branch = os.environ.get('INPUT_BRANCH') or 'master'
-        self.directory = os.environ.get('INPUT_DIRECTORY') or ''
-        self.https = os.environ.get('INPUT_HTTPS') or True
+        self.username = username
+        self.password = password
+        self.repo = repo
+        self.branch = branch or 'master'
+        self.directory = directory or ''
+        self.https = https or True
 
     @staticmethod
     def get_csrf_token(html):
@@ -86,7 +86,8 @@ class Action:
         try:
             resp = self.session.get(login_index_url,
                                     headers=index_headers,
-                                    timeout=5)
+                                    timeout=5,
+                                    verify=False)
             csrf_token = self.get_csrf_token(resp.text)
             headers = {
                 'Referer': 'https://gitee.com/login',
@@ -97,7 +98,8 @@ class Action:
             self.session.post(check_login_url,
                               headers=headers,
                               data=form_data,
-                              timeout=5)
+                              timeout=5,
+                              verify=False)
             data = f'{csrf_token}$gitee${self.password}'
             pubkey = rsa.PublicKey.load_pkcs1_openssl_pem(PUBLIC_KEY.encode())
             encrypt_data = rsa.encrypt(data.encode(), pubkey)
@@ -115,7 +117,8 @@ class Action:
             resp = self.session.post(login_index_url,
                                      headers=index_headers,
                                      data=form_data,
-                                     timeout=5)
+                                     timeout=5,
+                                     verify=False)
             return '个人主页' in resp.text or '我的工作台' in resp.text
         except Exception as e:
             print(f'login error occurred, message: {e}')
@@ -143,7 +146,8 @@ class Action:
             resp = self.session.post(rebuild_url,
                                      headers=headers,
                                      data=form_data,
-                                     timeout=5)
+                                     timeout=5,
+                                     verify=False)
             return resp.status_code == 200
         except Exception as e:
             print(f'deploy error occurred, message: {e}')
@@ -155,5 +159,13 @@ class Action:
 
 
 if __name__ == '__main__':
-    action = Action()
+    input_username = os.environ['INPUT_GITEE-USERNAME']
+    input_password = os.environ['INPUT_GITEE-PASSWORD']
+    input_repo = os.environ['INPUT_GITEE-REPO']
+    input_branch = os.environ.get('INPUT_BRANCH')
+    input_directory = os.environ.get('INPUT_DIRECTORY')
+    input_https = os.environ.get('INPUT_HTTPS')
+
+    action = Action(input_username, input_password, input_repo,
+                    input_branch, input_directory, input_https)
     action.run()
