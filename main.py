@@ -59,6 +59,8 @@ requests.packages.urllib3.disable_warnings()
 class Action:
     """Gitee Pages Action"""
 
+    timeout = 5
+
     def __init__(self, username, password, repo,
                  branch='master', directory='', https='true'):
         self.session = requests.session()
@@ -88,21 +90,21 @@ class Action:
             'User-Agent': random.choice(USER_AGENTS)
         }
         try:
-            resp = self.session.get(login_index_url,
+            resp = self.session.get(url=login_index_url,
                                     headers=index_headers,
-                                    timeout=5,
+                                    timeout=Action.timeout,
                                     verify=False)
-            csrf_token = self.get_csrf_token(resp.text)
+            csrf_token = Action.get_csrf_token(resp.text)
             headers = {
                 'Referer': 'https://gitee.com/login',
                 'X-Requested-With': 'XMLHttpRequest',
                 'X-CSRF-Token': csrf_token,
                 'User-Agent': random.choice(USER_AGENTS)
             }
-            self.session.post(check_login_url,
+            self.session.post(url=check_login_url,
                               headers=headers,
                               data=form_data,
-                              timeout=5,
+                              timeout=Action.timeout,
                               verify=False)
             data = f'{csrf_token}$gitee${self.password}'
             pubkey = rsa.PublicKey.load_pkcs1_openssl_pem(PUBLIC_KEY.encode())
@@ -118,10 +120,10 @@ class Action:
                 'encrypt_data[user[password]]': encrypt_data,
                 'user[remember_me]': 1
             }
-            resp = self.session.post(login_index_url,
+            resp = self.session.post(url=login_index_url,
                                      headers=index_headers,
                                      data=form_data,
-                                     timeout=5,
+                                     timeout=Action.timeout,
                                      verify=False)
             return '个人主页' in resp.text or '我的工作台' in resp.text
         except Exception as e:
@@ -133,7 +135,7 @@ class Action:
         rebuild_url = f'{pages_url}/rebuild'
         try:
             pages = self.session.get(pages_url)
-            csrf_token = self.get_csrf_token(pages.text)
+            csrf_token = Action.get_csrf_token(pages.text)
             headers = {
                 'Content-Type': 'application/x-www-form-urlencoded; '
                                 'charset=UTF-8',
@@ -147,10 +149,10 @@ class Action:
                 'build_directory': self.directory,
                 'force_https': self.https
             }
-            resp = self.session.post(rebuild_url,
+            resp = self.session.post(url=rebuild_url,
                                      headers=headers,
                                      data=form_data,
-                                     timeout=5,
+                                     timeout=Action.timeout,
                                      verify=False)
             return resp.status_code == 200
         except Exception as e:
@@ -163,9 +165,9 @@ class Action:
 
 
 if __name__ == '__main__':
-    input_username = os.environ['INPUT_GITEE-USERNAME']
-    input_password = os.environ['INPUT_GITEE-PASSWORD']
-    input_repo = os.environ['INPUT_GITEE-REPO']
+    input_username = os.environ.get('INPUT_GITEE-USERNAME')
+    input_password = os.environ.get('INPUT_GITEE-PASSWORD')
+    input_repo = os.environ.get('INPUT_GITEE-REPO')
     input_branch = os.environ.get('INPUT_BRANCH')
     input_directory = os.environ.get('INPUT_DIRECTORY')
     input_https = os.environ.get('INPUT_HTTPS')
