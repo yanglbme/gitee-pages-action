@@ -7,18 +7,18 @@
 
 <div align="center">
 
-[![actions status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![license](https://badgen.net/badge/faq/here/blue)](https://github.com/yanglbme/gitee-pages-action/wiki/FAQ) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)
+[![lint status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![Mirror status](https://github.com/yanglbme/gitee-pages-action/workflows/Sync/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![users](https://badgen.net/badge/Who's/using/green)](#谁在使用) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)<br>[![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![license](https://badgen.net/badge/faq/here/blue)](https://github.com/yanglbme/gitee-pages-action/wiki/FAQ)
 
 </div>
 
-使用 `GitHub Pages` 时，每当项目有更新，GitHub 会自动帮我们重新部署 `GitHub Pages`。对于国内的 `Gitee Pages`，一般情况下无法自动部署，除非我们开通 `Gitee Pages Pro` 功能。而 `Pro` 功能的开通，需要满足以下其中一个条件：
+使用 GitHub Pages 时，每当项目有更新，GitHub 会自动帮我们重新部署 GitHub Pages。对于国内的 Gitee Pages，一般情况下无法自动部署，除非我们开通 Gitee Pages Pro 功能。而 Pro 功能的开通，需要满足以下其中一个条件：
 
-- 花钱开通 `Pro` 功能，￥ 99/年。
-- Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 `Gitee Pages Pro`”。
+- 花钱开通 Pro 功能，￥ 99/年。
+- Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 Gitee Pages Pro”。
 
-为了帮助更多朋友实现 `Gitee Pages` 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在项目的 `Settings` 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
+为了帮助更多朋友实现 Gitee Pages 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在项目的 Settings 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
-注：首次需要手动登录 Gitee 点击构建。
+注：首次需要手动登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
 
 ## 入参
 
@@ -35,7 +35,7 @@
 
 以下是一个完整示例。
 
-在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 `sync.yml` 文件，内容如下：
+在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 .yml 文件，如 `sync.yml`，内容如下：
 
 ```yml
 name: Sync
@@ -70,12 +70,12 @@ jobs:
           gitee-repo: doocs/advanced-java
 ```
 
-先使用 [`wearerequired/git-mirror-action`](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [`yanglbme/gitee-pages-action`](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
+先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
 
-请确保在 GitHub 项目的 `Settings` -> `Secrets` 路径下配置好 `GITEE_RSA_PRIVATE_KEY` 以及 `GITEE_PASSWORD` 两个密钥。其中：
+请确保在 GitHub 项目的 Settings -> Secrets 路径下配置好 `GITEE_RSA_PRIVATE_KEY` 以及 `GITEE_PASSWORD` 两个密钥。其中：
 
 - `GITEE_RSA_PRIVATE_KEY`: 存放你的 `id_rsa` 私钥。
-- `GITEE_PASSWORD`: 存放你的 Gitee 帐户密码。
+- `GITEE_PASSWORD`: 存放你的 Gitee 帐号的密码。
 
 ![](./images/add_secrets.png)
 
@@ -88,8 +88,8 @@ jobs:
 注：
 
 1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
-1. Gitee 仓库名**严格区分大小写**，配置 Action 入参 `gitee-repo` 时请注意准确填写，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
-1. 若执行 Sync 过程中 Actions 提示 `Your push would publish a private email address.`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
+1. Gitee 仓库名严格区分大小写，配置 Action 入参 `gitee-repo` 时请注意准确填写，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
+1. 若执行 Sync 过程中 Actions 提示 `Your push would publish a private email address`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
 
 ## 谁在使用
 
@@ -146,7 +146,7 @@ jobs:
 
 ## FAQ
 
-请查看[这里](./FAQ.md)。
+请查看[这里](./FAQ.md) 。
 
 ## 许可证
 
