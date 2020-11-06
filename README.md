@@ -3,7 +3,6 @@
     <img src="./images/logo.png">
   </a>
 </p>
-<h1 align="center">Gitee Pages Action</h1>
 
 <div align="center">
 
@@ -11,12 +10,11 @@
 
 </div>
 
-使用 GitHub Pages 时，每当项目有更新，GitHub 会自动帮我们重新部署 GitHub Pages。对于国内的 Gitee Pages，一般情况下无法自动部署，除非我们开通 Gitee Pages Pro 功能。而 Pro 功能的开通，需要满足以下其中一个条件：
+<h1 align="center">Gitee Pages Action</h1>
 
-- 花钱开通 Pro 功能，￥ 99/年。
-- Gitee 项目足够优秀，得到 Gitee 官方的推荐，那么 Gitee 就会提示“您的项目为推荐项目，已自动为您开通 Gitee Pages Pro”。
+由于 Gitee Pages 的访问速度很快，很多朋友会选择 Gitee Pages 部署项目（如：博客、开源项目站点）。但是它不像 GitHub Pages 那样，一提交代码就能自动更新 Pages，因为 Gitee 的自动部署属于 Gitee Pages Pro 的服务。
 
-为了帮助更多朋友实现 Gitee Pages 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在项目的 Settings 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。若有使用上的问题，欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
+为了实现 Gitee Pages 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在 GitHub 项目的 Settings 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。欢迎体验，若有使用上的问题，也欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
 注：首次需要手动登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
 
