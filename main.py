@@ -25,7 +25,7 @@ class Action:
     def __init__(self, username, password, repo,
                  branch='master', directory='', https='true'):
         self.session = requests.session()
-        self.ua = UserAgent()
+        self.ua = UserAgent(verify_ssl=False)
         self.username = username
         self.password = password
         self.repo = repo
@@ -90,7 +90,7 @@ class Action:
             return '个人主页' in resp.text or '我的工作台' in resp.text
         except Exception as e:
             print(f'login error occurred, message: {e}')
-            return False
+            exit(1)
 
     def rebuild_pages(self):
         pages_url = f'https://gitee.com/{self.repo}/pages'
@@ -119,7 +119,7 @@ class Action:
             return resp.status_code == 200
         except Exception as e:
             print(f'deploy error occurred, message: {e}')
-            return False
+            exit(1)
 
     def run(self):
         res = self.login() and self.rebuild_pages()
@@ -133,7 +133,6 @@ if __name__ == '__main__':
     input_branch = os.environ.get('INPUT_BRANCH')
     input_directory = os.environ.get('INPUT_DIRECTORY')
     input_https = os.environ.get('INPUT_HTTPS')
-
     action = Action(input_username, input_password, input_repo,
                     input_branch, input_directory, input_https)
     action.run()

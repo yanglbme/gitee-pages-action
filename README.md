@@ -12,7 +12,7 @@
 
 <h1 align="center">Gitee Pages Action</h1>
 
-由于 Gitee Pages 的访问速度很快，很多朋友会选择 Gitee Pages 部署项目（如：博客、开源项目站点）。但是它不像 GitHub Pages 那样，一提交代码就能自动更新 Pages，因为 Gitee 的自动部署属于 Gitee Pages Pro 的服务。
+由于 Gitee Pages 的访问速度很快，很多朋友会选择 Gitee Pages 部署项目（如：个人博客、开源项目国内镜像站点）。但是它不像 GitHub Pages 那样，一提交代码就能自动更新 Pages，因为 Gitee 的自动部署属于 Gitee Pages Pro 的服务。
 
 为了实现 Gitee Pages 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在 GitHub 项目的 Settings 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。欢迎体验，若有使用上的问题，也欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
@@ -86,8 +86,8 @@ jobs:
 注：
 
 1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
-1. Gitee 仓库名严格区分大小写，配置 Action 入参 `gitee-repo` 时请注意准确填写，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
-1. 若执行 Sync 过程中 Actions 提示 `Your push would publish a private email address`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
+1. Gitee 仓库名严格区分大小写，若 Action 报 `deploy error occurred, message: 'NoneType' object has no attribute 'group'` 错误，请检查 `gitee-repo` 参数是否正确配置，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
+1. 若执行 Sync 过程中 Action 提示 `Your push would publish a private email address`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
 
 ## 谁在使用
 
