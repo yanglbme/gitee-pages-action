@@ -86,7 +86,7 @@ jobs:
 注：
 
 1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
-1. Gitee 仓库名严格区分大小写，若 Action 报 `deploy error occurred, message: 'NoneType' object has no attribute 'group'` 错误，请检查 `gitee-repo` 参数是否正确配置，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
+1. Gitee 仓库名严格区分大小写，若 Action 报 `deploy error occurred` 错误，请检查 `gitee-repo` 参数是否正确配置，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
 1. 若执行 Sync 过程中 Action 提示 `Your push would publish a private email address`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
 
 ## 谁在使用
