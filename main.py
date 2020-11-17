@@ -1,4 +1,5 @@
 import os
+import sys
 
 from app.action import Action
 
@@ -16,3 +17,4 @@ if __name__ == '__main__':
         print('rebuild Gitee Pages successfully')
     except Exception as e:
         print(f'::error::{e}')
+        sys.exit(1)
