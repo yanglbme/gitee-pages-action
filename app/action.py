@@ -100,7 +100,9 @@ class Action:
             raise Exception('need captcha validation, please visit '
                             'https://gitee.com/login, '
                             'login to validate your account')
-        if '"message": "phone_captcha_fail"' in resp.text:
+        if '"message": "phone_captcha_fail"' in resp.text or \
+                '当前帐号存在异常登录行为，为确认你的有效身份' in resp.text or \
+                '一条包含验证码的信息已发送至你的' in resp.text:
             raise Exception('need phone captcha validation, please follow '
                             'gitee wechat subscription '
                             'and bind your account')
