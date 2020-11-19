@@ -106,7 +106,9 @@ class Action:
             raise Exception('need phone captcha validation, please follow '
                             'gitee wechat subscription '
                             'and bind your account')
-        if not ('个人主页' in resp.text or '我的工作台' in resp.text):
+        if not ('个人主页' in resp.text or
+                '我的工作台' in resp.text or
+                'Dashboard - Gitee' in resp.text):
             raise Exception(f'unknown error occurred in login method, '
                             f'resp: {resp.text}')
 
