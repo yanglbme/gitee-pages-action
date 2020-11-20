@@ -25,7 +25,7 @@
 | `gitee-username` | Gitee 用户名                 | 是       | -        | `yanglbme`                      |
 | `gitee-password` | Gitee 密码                   | 是       | -        | `${{ secrets.GITEE_PASSWORD }}` |
 | `gitee-repo`     | Gitee 仓库（严格区分大小写） | 是       | -        | `doocs/advanced-java`           |
-| `branch`         | 要部署的分支                 | 否       | `master` | `main`                          |
+| `branch`         | 要部署的分支（分支必须存在） | 否       | `master` | `gh-pages`                      |
 | `directory`      | 要部署的分支上的目录         | 否       |          | `src`                           |
 | `https`          | 是否强制使用 HTTPS           | 否       | `true`   | `false`                         |
 
@@ -38,9 +38,7 @@
 ```yml
 name: Sync
 
-on:
-  push:
-    branches: [master]
+on: page_build
 
 jobs:
   build:
@@ -66,6 +64,8 @@ jobs:
           gitee-password: ${{ secrets.GITEE_PASSWORD }}
           # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
           gitee-repo: doocs/advanced-java
+          # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
+          branch: gh-pages
 ```
 
 先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
