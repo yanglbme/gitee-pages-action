@@ -1,4 +1,3 @@
-actions-toolkit==0.0.3
-fake_useragent
+actions-toolkit==0.0.5
 requests
 rsa
