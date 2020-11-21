@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![lint status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![Mirror status](https://github.com/yanglbme/gitee-pages-action/workflows/Sync/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![users](https://badgen.net/badge/Who's/using/green)](#谁在使用) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)<br>[![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![license](https://badgen.net/badge/faq/here/blue)](https://github.com/yanglbme/gitee-pages-action/wiki/FAQ)
+[![lint status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![Mirror status](https://github.com/yanglbme/gitee-pages-action/workflows/Sync/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![users](https://badgen.net/badge/Who's/using/green)](#谁在使用) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)<br>[![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![license](https://badgen.net/github/license/yanglbme/gitee-pages-action)](./LICENSE) [![license](https://badgen.net/badge/faq/here/blue)](#错误及解决方案)
 
 </div>
 
@@ -77,17 +77,26 @@ jobs:
 
 ![](./images/add_secrets.png)
 
-如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们可能会收到一封来自 Gitee 的告警邮件/站内信。放心，这是 GitHub Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
-
-![](./images/gitee_warn.png)
+如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们会在 Gitee 公众号收到一条登录通知。这是 GitHub Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
 
 ![](./images/wechat_notification.png)
 
+## 错误及解决方案
+
+| #   | 错误                                                                                                 | 解决方案                                                                                        |
+| --- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 1   | Error: wrong username or password, login failed                                                      | 帐号或密码错误，请检查参数 `gitee-username`、`gitee-password`是否准确配置。                     |
+| 2   | Error: need captcha validation, please visit https://gitee.com/login, login to validate your account | 需要图片验证码校验。可以手动登录 Gitee 官方，校验验证码。                                       |
+| 3   | Error: need phone captcha validation, please follow gitee wechat subscription and bind your account  | 需要短信验证码校验。可以关注 Gitee 微信公众号，并绑定 Gitee 帐号，接收登录提示。                |
+| 4   | Error: do not deploy frequently, try again one minute later                                          | 短期内频繁部署 Gitee Pages 导致，可以稍后再触发自动部署。                                       |
+| 5   | Error: deploy error occurred, please check your input `gitee-repo`                                   | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。                |
+| 6   | Error: unknown error occurred in login method, resp: ...                                             | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。 |
+| 7   | ...                                                                                                  | ...                                                                                             |
+
 注：
 
-1. 如果在使用过程中遇到了 Gitee 短信验证码导致 Gitee Pages Action 无法自动登录部署 Pages，参考 [#6](https://github.com/yanglbme/gitee-pages-action/issues/6) 。
-1. Gitee 仓库名严格区分大小写，若 Action 报 `deploy error occurred` 错误，请检查 `gitee-repo` 参数是否正确配置，参考 [#10](https://github.com/yanglbme/gitee-pages-action/issues/10) 。
-1. 若执行 Sync 过程中 Action 提示 `Your push would publish a private email address`，参考 [#18](https://github.com/yanglbme/gitee-pages-action/issues/18) 。
+1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
+1. `branch` 对应的分支，必须在仓库中实际存在，请不要盲目指定分支。
 
 ## 谁在使用
 
@@ -141,10 +150,6 @@ jobs:
     </td>
   </tr>
 </table>
-
-## FAQ
-
-请查看[这里](./FAQ.md) 。
 
 ## 许可证
 
