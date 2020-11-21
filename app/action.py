@@ -12,6 +12,9 @@ qVTFdpU01kCDUmClczJOCGZriLNMrshmN9NJxazpqizPthwS1OIK3HwRLEP9D3GL
 YkfslRZzCq5Fl3ooowIDAQAB
 -----END PUBLIC KEY-----"""
 
+USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' \
+             '(KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
+
 requests.packages.urllib3.disable_warnings()
 
 
@@ -50,9 +53,7 @@ class Action:
                       'q=0.9,image/webp,image/apng,*/*;'
                       'q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Host': 'gitee.com',
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/87.0.4280.66 Safari/537.36'
+            'User-Agent': USER_AGENT
         }
 
         resp = self.session.get(url=login_index_url,
@@ -64,9 +65,7 @@ class Action:
             'Referer': 'https://gitee.com/login',
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': csrf_token,
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/87.0.4280.66 Safari/537.36'
+            'User-Agent': USER_AGENT
         }
         self.session.post(url=check_login_url,
                           headers=headers,
@@ -126,9 +125,7 @@ class Action:
             'Referer': pages_url,
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': csrf_token,
-            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
-                          'AppleWebKit/537.36 (KHTML, like Gecko) '
-                          'Chrome/87.0.4280.66 Safari/537.36'
+            'User-Agent': USER_AGENT
         }
         form_data = {
             'branch': self.branch,
