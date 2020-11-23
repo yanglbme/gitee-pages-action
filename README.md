@@ -56,7 +56,7 @@ jobs:
           destination-repo: git@gitee.com:Doocs/advanced-java.git
 
       - name: Build Gitee Pages
-        uses: yanglbme/gitee-pages-action@master
+        uses: yanglbme/gitee-pages-action@main
         with:
           # 注意替换为你的 Gitee 用户名
           gitee-username: yanglbme
