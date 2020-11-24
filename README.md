@@ -83,20 +83,21 @@ jobs:
 
 ## 错误及解决方案
 
-| #   | 错误                                                                                                 | 解决方案                                                                                        |
-| --- | ---------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| 1   | Error: wrong username or password, login failed                                                      | 帐号或密码错误，请检查参数 `gitee-username`、`gitee-password`是否准确配置。                     |
-| 2   | Error: need captcha validation, please visit https://gitee.com/login, login to validate your account | 需要图片验证码校验。可以手动登录 Gitee 官方，校验验证码。                                       |
-| 3   | Error: need phone captcha validation, please follow gitee wechat subscription and bind your account  | 需要短信验证码校验。可以关注 Gitee 微信公众号，并绑定 Gitee 帐号，接收登录提示。                |
-| 4   | Error: do not deploy frequently, try again one minute later                                          | 短期内频繁部署 Gitee Pages 导致，可以稍后再触发自动部署。                                       |
-| 5   | Error: deploy error occurred, please check your input `gitee-repo`                                   | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。                |
-| 6   | Error: unknown error occurred in login method, resp: ...                                             | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。 |
-| 7   | ...                                                                                                  | ...                                                                                             |
+| #   | 错误                                                                                                  | 解决方案                                                                                        |
+| --- | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| 1   | Error: Wrong username or password, login failed .                                                     | 帐号或密码错误，请检查参数 `gitee-username`、`gitee-password`是否准确配置。                     |
+| 2   | Error: Need captcha validation, please visit https://gitee.com/login, login to validate your account. | 需要图片验证码校验。可以手动登录 Gitee 官方，校验验证码。                                       |
+| 3   | Error: Need phone captcha validation, please follow gitee wechat subscription and bind your account.  | 需要短信验证码校验。可以关注 Gitee 微信公众号，并绑定 Gitee 帐号，接收登录提示。                |
+| 4   | Error: Do not deploy frequently, try again one minute later.                                          | 短期内频繁部署 Gitee Pages 导致，可以稍后再触发自动部署。                                       |
+| 5   | Error: Deploy error occurred, please check your input `gitee-repo`.                                   | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。                |
+| 6   | Error: Unknown error occurred in login method, resp: ...                                              | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。 |
+| 7   | Error: Rebuild page error, status code: xxx                                                           | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。                                           |
+| 8   | ...                                                                                                   | ...                                                                                             |
 
 注：
 
 1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
-1. `branch` 对应的分支，必须在仓库中实际存在，请不要盲目指定分支。
+1. `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支。
 
 ## 谁在使用
 
@@ -111,7 +112,7 @@ jobs:
     <td align="center" style="width: 80px;">
       <a href="https://github.com/doocs">
         <img src="./images/doocs.png" style="width: 40px;"><br>
-        <sub>Doocs技术社区</sub>
+        <sub>Doocs 技术社区</sub>
       </a>
     </td>
     <td align="center" style="width: 80px;">
@@ -128,8 +129,8 @@ jobs:
         <li><a href="https://github.com/antvis/F2">antvis/F2</a></li>
         <li><a href="https://github.com/antvis/G6">antvis/G6</a></li>
         <li><a href="https://github.com/antvis/L7">antvis/L7</a></li>
-        <li><a href="https://github.com/antvis/Graphin">antvis/Graphin</a></li>
         <li><a href="https://github.com/antvis/G2Plot">antvis/G2Plot</a></li>
+        <li><a href="https://github.com/antvis/Graphin">antvis/Graphin</a></li>
         <li><a href="https://github.com/antvis/antvis.github.io">antvis/antvis.github.io</a></li>
       </ul>
     </td>
@@ -144,8 +145,8 @@ jobs:
     </td>
     <td align="left" style="width: 80px;">
       <ul>
-        <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
         <li><a href="https://github.com/youzan/vant">youzan/vant</a></li>
+        <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
       </ul>
     </td>
   </tr>

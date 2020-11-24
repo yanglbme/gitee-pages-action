@@ -39,8 +39,8 @@ class Action:
             '<meta content="authenticity_token" name="csrf-param" />(.*?)'
             '<meta content="(.*?)" name="csrf-token" />', html, re.S)
         if res is None:
-            raise Exception('deploy error occurred, '
-                            'please check your input `gitee-repo`')
+            raise Exception('Deploy error occurred, '
+                            'please check your input `gitee-repo`.')
         return res.group(2)
 
     def login(self):
@@ -95,22 +95,22 @@ class Action:
                 '"message": "Invalid email or password."' in resp.text or \
                 '"message": "not_found_in_database"' in resp.text or \
                 '"message": "not_found_and_show_captcha"' in resp.text:
-            raise Exception('wrong username or password, login failed')
+            raise Exception('Wrong username or password, login failed.')
         if '"message": "captcha_expired"' in resp.text or \
                 '"message": "captcha_fail"' in resp.text:
-            raise Exception('need captcha validation, please visit '
+            raise Exception('Need captcha validation, please visit '
                             'https://gitee.com/login, '
-                            'login to validate your account')
+                            'login to validate your account.')
         if '"message": "phone_captcha_fail"' in resp.text or \
                 '当前帐号存在异常登录行为，为确认你的有效身份' in resp.text or \
                 '一条包含验证码的信息已发送至你的' in resp.text:
-            raise Exception('need phone captcha validation, please follow '
+            raise Exception('Need phone captcha validation, please follow '
                             'gitee wechat subscription '
-                            'and bind your account')
+                            'and bind your account.')
         if not ('个人主页' in resp.text or
                 '我的工作台' in resp.text or
                 'Dashboard - Gitee' in resp.text):
-            raise Exception(f'unknown error occurred in login method, '
+            raise Exception(f'Unknown error occurred in login method, '
                             f'resp: {resp.text}')
 
     def rebuild_pages(self):
@@ -138,11 +138,11 @@ class Action:
                                  timeout=Action.timeout,
                                  verify=False)
         if resp.status_code != 200:
-            raise Exception(f'rebuild page error, '
-                            f'status code: {resp.status_code}')
+            raise Exception(f'Rebuild page error, '
+                            f'status code: {resp.status_code}.')
         if '请勿频繁更新部署，稍等1分钟再试试看' in resp.text:
-            raise Exception(f'do not deploy frequently, '
-                            f'try again one minute later')
+            raise Exception(f'Do not deploy frequently, '
+                            f'try again one minute later.')
 
     def run(self):
         self.login()
