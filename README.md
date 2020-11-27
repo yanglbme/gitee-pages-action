@@ -6,7 +6,7 @@
 
 <div align="center">
 
-[![lint status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![Mirror status](https://github.com/yanglbme/gitee-pages-action/workflows/Sync/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![users](https://badgen.net/badge/Who's/using/green)](#谁在使用) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls)<br>[![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action?ref=badge_shield) [![faq](https://badgen.net/badge/faq/here/blue)](#错误及解决方案)
+[![lint status](https://github.com/yanglbme/gitee-pages-action/workflows/Lint/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![Mirror status](https://github.com/yanglbme/gitee-pages-action/workflows/Sync/badge.svg)](https://github.com/yanglbme/gitee-pages-action/actions) [![PRs Welcome](https://badgen.net/badge/PRs/welcome/green)](../../pulls) [![users](https://badgen.net/badge/Who's/using/green)](#谁在使用) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action?ref=badge_shield)<br>[![release](https://img.shields.io/github/v/release/yanglbme/gitee-pages-action.svg)](../../releases) [![github](https://badgen.net/badge/⭐/GitHub/blue)](https://github.com/yanglbme/gitee-pages-action) [![gitee](https://badgen.net/badge/⭐/Gitee/blue)](https://gitee.com/yanglbme/gitee-pages-action) [![faq](https://badgen.net/badge/faq/here/blue)](#错误及解决方案)
 
 </div>
 
@@ -25,7 +25,7 @@
 | `gitee-username` | Gitee 用户名                 | 是       | -        | `yanglbme`                      |
 | `gitee-password` | Gitee 密码                   | 是       | -        | `${{ secrets.GITEE_PASSWORD }}` |
 | `gitee-repo`     | Gitee 仓库（严格区分大小写） | 是       | -        | `doocs/advanced-java`           |
-| `branch`         | 要部署的分支（分支必须存在） | 否       | `master` | `gh-pages`                      |
+| `branch`         | 要部署的分支（分支必须存在） | 否       | `master` | `main`                          |
 | `directory`      | 要部署的分支上的目录         | 否       |          | `src`                           |
 | `https`          | 是否强制使用 HTTPS           | 否       | `true`   | `false`                         |
 
@@ -33,7 +33,7 @@
 
 以下是一个完整示例。
 
-在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 .yml 文件，如 `sync.yml`，内容如下：
+在你的 GitHub 仓库 `.github/workflows/` 文件夹下创建一个 `.yml` 文件，如 `sync.yml`，内容如下：
 
 ```yml
 name: Sync
@@ -65,7 +65,7 @@ jobs:
           # 注意替换为你的 Gitee 仓库，仓库名严格区分大小写，请准确填写，否则会出错
           gitee-repo: doocs/advanced-java
           # 要部署的分支，默认是 master，若是其他分支，则需要指定（指定的分支必须存在）
-          branch: gh-pages
+          branch: main
 ```
 
 先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
@@ -98,6 +98,7 @@ jobs:
 
 1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
 1. `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支。
+1. 示例中触发 Action 执行的事件设置为 `page_build`，你也可以根据实际情况指定为其它的触发事件。请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)。
 
 ## 谁在使用
 
