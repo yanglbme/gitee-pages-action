@@ -23,8 +23,9 @@ class Action:
 
     timeout = 5
 
-    def __init__(self, username, password, repo,
-                 branch='master', directory='', https='true'):
+    def __init__(self, username: str, password: str,
+                 repo: str, branch: str = 'master',
+                 directory: str = '', https: str = 'true'):
         self.session = requests.session()
         self.username = username
         self.password = password
@@ -114,6 +115,8 @@ class Action:
                             f'resp: {resp.text}')
 
     def rebuild_pages(self):
+        if '/' not in self.repo:
+            self.repo = f'{self.username}/{self.repo}'
         pages_url = f'https://gitee.com/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 
