@@ -92,7 +92,8 @@ jobs:
 | 5   | Error: Deploy error occurred, please check your input `gitee-repo`.                                   | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。                |
 | 6   | Error: Unknown error occurred in login method, resp: ...                                              | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。 |
 | 7   | Error: Rebuild page error, status code: xxx                                                           | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。                                           |
-| 8   | ...                                                                                                   | ...                                                                                             |
+| 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)              | 网络请求出错，请尝试 Re-run jobs 。                                                             |
+| 9   | ...                                                                                                   | ...                                                                                             |
 
 注：
 
