@@ -4,6 +4,7 @@ import re
 import requests
 import requests.packages.urllib3
 import rsa
+from retry import retry
 
 PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY
@@ -21,7 +22,7 @@ requests.packages.urllib3.disable_warnings()
 class Action:
     """Gitee Pages Action"""
 
-    timeout = 5
+    timeout = 6
 
     def __init__(self, username: str, password: str,
                  repo: str, branch: str = 'master',
@@ -44,6 +45,10 @@ class Action:
                             'please check your input `gitee-repo`.')
         return res.group(2)
 
+    @retry((requests.exceptions.ReadTimeout,
+            requests.exceptions.ConnectTimeout,
+            requests.exceptions.ConnectionError),
+           tries=3, delay=1, backoff=2)
     def login(self):
         login_index_url = 'https://gitee.com/login'
         check_login_url = 'https://gitee.com/check_user_login'
@@ -114,6 +119,10 @@ class Action:
             raise Exception(f'Unknown error occurred in login method, '
                             f'resp: {resp.text}')
 
+    @retry((requests.exceptions.ReadTimeout,
+            requests.exceptions.ConnectTimeout,
+            requests.exceptions.ConnectionError),
+           tries=3, delay=1)
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'

@@ -1,3 +1,4 @@
-actions-toolkit==0.0.5
+actions-toolkit
 requests
+retry
 rsa
