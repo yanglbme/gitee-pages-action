@@ -1,16 +1,13 @@
 name: Prettier
 
 on:
-  pull_request:
   push:
-    branches:
-    - master
-    - main
+    branches: [master, main]
 
 jobs:
   prettier:
     runs-on: ubuntu-latest
-
+    if: github.repository == 'yanglbme/gitee-pages-action'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -18,9 +15,9 @@ jobs:
         ref: ${{ github.head_ref }}
 
     - name: Prettify code
-      uses: creyD/prettier_action@v3.0
+      uses: creyD/prettier_action@v3.2
       with:
-        prettier_options: --write **/*.{html,js,md}
+        prettier_options: --write **/*.{md}
         commit_message: 'docs: prettify code'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
