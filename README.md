@@ -72,16 +72,16 @@ jobs:
 
 **密钥的配置步骤如下**：
 
-1. 在 GitHub 项目的 Settings -> Secrets 路径下配置好命名为 `GITEE_RSA_PRIVATE_KEY` 和 `GITEE_PASSWORD` 的两个密钥。
-   其中：`GITEE_RSA_PRIVATE_KEY` 存放 `id_rsa` 私钥；`GITEE_PASSWORD` 存放 Gitee 帐号的密码。
-1. 在 GitHub 项目的 Setting -> Deploy Keys 路径下配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
-1. 在 Gitee 的 [SSH 公钥](https://gitee.com/profile/sshkeys) 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
-
-注：SSH 公私钥的生成可以用命令 `ssh-keygen -t rsa -C "这里替换为你的邮箱"`
+1. 在终端或 Git Bash 使用命令 `ssh-keygen -t rsa -C "youremail@example.com"` 生成 SSH Key，注意替换为自己的邮箱。生成的 `id_rsa` 是私钥，`id_rsa.pub` 是公钥。
+1. 在 GitHub 项目的「​Settings -> Secrets」路径下配置好命名为 `GITEE_RSA_PRIVATE_KEY` 和 `GITEE_PASSWORD` 的两个密钥。其中：`GITEE_RSA_PRIVATE_KEY` 存放 `id_rsa` 私钥；`GITEE_PASSWORD` 存放 Gitee 帐号的密码。
+1. 在 GitHub 的个人设置页面「[Settings -> SSH and GPG keys](https://github.com/settings/keys)」​ 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
+1. 在 Gitee 的个人设置页面「[安全设置 -> SSH 公钥](https://gitee.com/profile/sshkeys)」​ 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
 
 ![](./images/add_secrets.png)
 
-![](./images/add_deploy_key.png)
+![](./images/add_ssh_key_github.png)
+
+![](./images/add_ssh_key_gitee.png)
 
 如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们会在 Gitee 公众号收到一条登录通知。这是 GitHub Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
 
@@ -99,7 +99,7 @@ jobs:
 | 6   | Error: Unknown error occurred in login method, resp: ...                                                                                                                           | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。                                                 |
 | 7   | Error: Rebuild page error, status code: xxx                                                                                                                                        | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。                                                                                           |
 | 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)                                                                                           | 网络请求出错，请尝试 Re-run jobs 。[#27](https://github.com/yanglbme/gitee-pages-action/issues/27)                                              |
-| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。                                                                                |
+| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。[#29](https://github.com/yanglbme/gitee-pages-action/issues/29)                 |
 | ... | ...                                                                                                                                                                                | ...                                                                                                                                             |
 
 注：
