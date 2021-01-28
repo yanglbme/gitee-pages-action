@@ -23,6 +23,7 @@ class Action:
     """Gitee Pages Action"""
 
     timeout = 6
+    domain = 'https://gitee.com'
 
     def __init__(self, username: str, password: str,
                  repo: str, branch: str = 'master',
@@ -50,8 +51,8 @@ class Action:
             requests.exceptions.ConnectionError),
            tries=3, delay=1, backoff=2)
     def login(self):
-        login_index_url = 'https://gitee.com/login'
-        check_login_url = 'https://gitee.com/check_user_login'
+        login_index_url = f'{Action.domain}/login'
+        check_login_url = f'{Action.domain}/check_user_login'
         form_data = {'user_login': self.username}
 
         index_headers = {
@@ -68,7 +69,7 @@ class Action:
                                 verify=False)
         csrf_token = Action.get_csrf_token(resp.text)
         headers = {
-            'Referer': 'https://gitee.com/login',
+            'Referer': login_index_url,
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': csrf_token,
             'User-Agent': USER_AGENT
@@ -126,7 +127,7 @@ class Action:
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
-        pages_url = f'https://gitee.com/{self.repo}/pages'
+        pages_url = f'{Action.domain}/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 
         pages = self.session.get(pages_url)
