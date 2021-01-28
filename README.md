@@ -70,20 +70,26 @@ jobs:
 
 先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
 
-**密钥的配置步骤如下**：
+**密钥的配置步骤如下（可展开看示例图）**：
 
-1. 在终端或 Git Bash 使用命令 `ssh-keygen -t rsa -C "youremail@example.com"` 生成 SSH Key，注意替换为自己的邮箱。生成的 `id_rsa` 是私钥，`id_rsa.pub` 是公钥。
-1. 在 GitHub 项目的「​Settings -> Secrets」路径下配置好命名为 `GITEE_RSA_PRIVATE_KEY` 和 `GITEE_PASSWORD` 的两个密钥。其中：`GITEE_RSA_PRIVATE_KEY` 存放 `id_rsa` 私钥；`GITEE_PASSWORD` 存放 Gitee 帐号的密码。
-1. 在 GitHub 的个人设置页面「[Settings -> SSH and GPG keys](https://github.com/settings/keys)」​ 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
-1. 在 Gitee 的个人设置页面「[安全设置 -> SSH 公钥](https://gitee.com/profile/sshkeys)」​ 配置 SSH 公钥（即：`id_rsa.pub`），命名随意。
+<details>
+<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。</summary>
+<img src="./images/gen_ssh_key.png/" alt="gen_ssh_key">
+</details>
+<details>
+<summary>2. 在 GitHub 项目的「​Settings -> Secrets」路径下配置好命名为 <code>GITEE_RSA_PRIVATE_KEY</code> 和 <code>GITEE_PASSWORD</code> 的两个密钥。其中：<code>GITEE_RSA_PRIVATE_KEY</code> 存放 <code>id_rsa</code> 私钥；<code>GITEE_PASSWORD</code> 存放 Gitee 帐号的密码。</summary>
+<img src="./images/add_secrets.png/" alt="add_secrets">
+</details>
+<details>
+<summary>3. 在 GitHub 的个人设置页面「<a href="https://github.com/settings/keys">Settings -> SSH and GPG keys</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
+<img src="./images/add_ssh_key_github.png/" alt="add_ssh_key_github">
+</details>
+<details>
+<summary>4. 在 Gitee 的个人设置页面「<a href="https://gitee.com/profile/sshkeys">安全设置 -> SSH 公钥</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
+<img src="./images/add_ssh_key_gitee.png/" alt="add_ssh_key_gitee">
+</details>
 
-![](./images/add_secrets.png)
-
-![](./images/add_ssh_key_github.png)
-
-![](./images/add_ssh_key_gitee.png)
-
-如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们会在 Gitee 公众号收到一条登录通知。这是 GitHub Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
+如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们会在 Gitee 公众号收到一条登录通知。这是 Gitee Pages Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
 
 ![](./images/wechat_notification.png)
 
