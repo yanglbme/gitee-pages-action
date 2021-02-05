@@ -31,7 +31,7 @@ class Action:
         self.session = requests.session()
         self.username = username
         self.password = password
-        self.repo = repo
+        self.repo = repo.strip('/')
         self.branch = branch
         self.directory = directory
         self.https = https
@@ -116,6 +116,7 @@ class Action:
                             'and bind your account.')
         if not ('个人主页' in resp.text or
                 '我的工作台' in resp.text or
+                '我的工作臺' in resp.text or
                 'Dashboard - Gitee' in resp.text):
             raise Exception(f'Unknown error occurred in login method, '
                             f'resp: {resp.text}')
