@@ -16,7 +16,7 @@
 
 为了实现 Gitee Pages 的自动部署，我开发了 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，只需要在 GitHub 项目的 Settings 页面下配置 keys，然后在 `.github/workflows/` 下创建一个工作流，引入一些配置参数即可。欢迎体验，若有使用上的问题，也欢迎随时在 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
-注：首次需要手动登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
+注：首次需要**手动**登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
 
 ## 入参
 
@@ -73,7 +73,7 @@ jobs:
 **密钥的配置步骤如下（可展开看示例图）**：
 
 <details>
-<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。</summary>
+<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码)</summary>
 <img src="./images/gen_ssh_key.png/" alt="gen_ssh_key">
 </details>
 <details>
@@ -95,18 +95,18 @@ jobs:
 
 ## 错误及解决方案
 
-| #   | 错误                                                                                                                                                                               | 解决方案                                                                                                                                        |
-| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Error: Wrong username or password, login failed .                                                                                                                                  | 帐号或密码错误，请检查参数 `gitee-username`、`gitee-password`是否准确配置。                                                                     |
-| 2   | Error: Need captcha validation, please visit https://gitee.com/login, login to validate your account.                                                                              | 需要图片验证码校验。可以手动登录 Gitee 官方，校验验证码。                                                                                       |
-| 3   | Error: Need phone captcha validation, please follow gitee wechat subscription and bind your account.                                                                               | 需要短信验证码校验。可以关注 Gitee 微信公众号，并绑定 Gitee 帐号，接收登录提示。[#6](https://github.com/yanglbme/gitee-pages-action/issues/6)   |
-| 4   | Error: Do not deploy frequently, try again one minute later.                                                                                                                       | 短期内频繁部署 Gitee Pages 导致，可以稍后再触发自动部署。                                                                                       |
-| 5   | Error: Deploy error occurred, please check your input `gitee-repo`.                                                                                                                | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。[#10](https://github.com/yanglbme/gitee-pages-action/issues/10) |
-| 6   | Error: Unknown error occurred in login method, resp: ...                                                                                                                           | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。                                                 |
-| 7   | Error: Rebuild page error, status code: xxx                                                                                                                                        | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。                                                                                           |
-| 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)                                                                                           | 网络请求出错，请尝试 Re-run jobs 。[#27](https://github.com/yanglbme/gitee-pages-action/issues/27)                                              |
-| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。[#29](https://github.com/yanglbme/gitee-pages-action/issues/29)                 |
-| ... | ...                                                                                                                                                                                | ...                                                                                                                                             |
+| #   | 错误                                                                                                                                                                               | 解决方案                                                                                                                                                                                         |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| 1   | Error: Wrong username or password, login failed .                                                                                                                                  | 帐号或密码错误，请检查参数 `gitee-username`、`gitee-password`是否准确配置。                                                                                                                      |
+| 2   | Error: Need captcha validation, please visit https://gitee.com/login, login to validate your account.                                                                              | 需要图片验证码校验。可以手动登录 Gitee 官方，校验验证码。                                                                                                                                        |
+| 3   | Error: Need phone captcha validation, please follow gitee wechat subscription and bind your account.                                                                               | 需要短信验证码校验。可以关注 Gitee 微信公众号，并绑定 Gitee 帐号，接收登录提示。[#6](https://github.com/yanglbme/gitee-pages-action/issues/6)                                                    |
+| 4   | Error: Do not deploy frequently, try again one minute later.                                                                                                                       | 短期内频繁部署 Gitee Pages 导致，可以稍后再触发自动部署。                                                                                                                                        |
+| 5   | Error: Deploy error occurred, please check your input `gitee-repo`.                                                                                                                | `gitee-repo` 参数格式如：`doocs/advanced-java`，并且严格区分大小写，请准确填写。[#10](https://github.com/yanglbme/gitee-pages-action/issues/10)                                                  |
+| 6   | Error: Unknown error occurred in login method, resp: ...                                                                                                                           | 登录出现未知错误，请在 [issues](https://github.com/yanglbme/gitee-pages-action/issues) 区反馈。                                                                                                  |
+| 7   | Error: Rebuild page error, status code: xxx                                                                                                                                        | 更新 Pages 时状态码异常，请尝试再次触发 Action 执行。也可能为 gitee pages 未初始化，第一次需要手动部署 gitee pages。                                                                             |
+| 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)                                                                                           | 网络请求出错，请尝试 Re-run jobs 。[#27](https://github.com/yanglbme/gitee-pages-action/issues/27)                                                                                               |
+| 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists.. | SSH 公私钥配置有问题，请参照上文提及的密钥配置步骤进行相应配置。[#29](https://github.com/yanglbme/gitee-pages-action/issues/29)。 也有可能是使用了带密码的私钥，请参照上文步骤设置无密码的私钥。 |
+| ... | ...                                                                                                                                                                                | ...                                                                                                                                                                                              |
 
 注：
 
