@@ -12,6 +12,6 @@ if __name__ == '__main__':
     action = Action(username, password, repo, branch, directory, https)
     try:
         action.run()
-        core.info('Rebuild Gitee Pages successfully.')
+        core.info('Success, thanks for using @yanglbme/gitee-pages-action!')
     except Exception as e:
         core.set_failed(str(e))
