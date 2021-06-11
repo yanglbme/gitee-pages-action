@@ -144,12 +144,6 @@ jobs:
         <sub>Doocs 技术社区</sub>
       </a>
     </td>
-    <td align="center" style="width: 80px;">
-      <a href="https://github.com/youzan">
-        <img src="./images/youzan.jpg" style="width: 40px;"><br>
-        <sub>有赞</sub>
-      </a>
-    </td>
   </tr>
   <tr>
     <td align="left" style="width: 80px;">
@@ -170,12 +164,6 @@ jobs:
         <li><a href="https://github.com/doocs/advanced-java">doocs/advanced-java</a></li>
         <li><a href="https://github.com/doocs/doocs.github.io">doocs/doocs.github.io</a></li>
         <li><a href="https://github.com/doocs/source-code-hunter">doocs/source-code-hunter</a></li>
-      </ul>
-    </td>
-    <td align="left" style="width: 80px;">
-      <ul>
-        <li><a href="https://github.com/youzan/vant">youzan/vant</a></li>
-        <li><a href="https://github.com/youzan/vant-weapp">youzan/vant-weapp</a></li>
       </ul>
     </td>
   </tr>
