@@ -169,6 +169,8 @@ jobs:
   </tr>
 </table>
 
+查看更多用户，请访问 https://github.com/search?q=yanglbme%2Fgitee-pages-action&type=code 。
+
 ## License
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action?ref=badge_large)
