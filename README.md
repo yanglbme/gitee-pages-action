@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://github.com/yanglbme/gitee-pages-action">
-    <img src="./images/logo.png">
+    <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/logo.png">
   </a>
 </p>
 
@@ -81,24 +81,24 @@ jobs:
 
 <details>
 <summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码)</summary>
-<img src="./images/gen_ssh_key.png/" alt="gen_ssh_key">
+<img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/gen_ssh_key.png" alt="gen_ssh_key">
 </details>
 <details>
 <summary>2. 在 GitHub 项目的「​Settings -> Secrets」路径下配置好命名为 <code>GITEE_RSA_PRIVATE_KEY</code> 和 <code>GITEE_PASSWORD</code> 的两个密钥。其中：<code>GITEE_RSA_PRIVATE_KEY</code> 存放 <code>id_rsa</code> 私钥；<code>GITEE_PASSWORD</code> 存放 Gitee 帐号的密码。</summary>
-<img src="./images/add_secrets.png/" alt="add_secrets">
+<img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_secrets.png" alt="add_secrets">
 </details>
 <details>
 <summary>3. 在 GitHub 的个人设置页面「<a href="https://github.com/settings/keys">Settings -> SSH and GPG keys</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
-<img src="./images/add_ssh_key_github.png/" alt="add_ssh_key_github">
+<img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_ssh_key_github.png" alt="add_ssh_key_github">
 </details>
 <details>
 <summary>4. 在 Gitee 的个人设置页面「<a href="https://gitee.com/profile/sshkeys">安全设置 -> SSH 公钥</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
-<img src="./images/add_ssh_key_gitee.png/" alt="add_ssh_key_gitee">
+<img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_ssh_key_gitee.png" alt="add_ssh_key_gitee">
 </details>
 
 如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，我们会在 Gitee 公众号收到一条登录通知。这是 Gitee Pages Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
 
-![](./images/wechat_notification.png)
+<img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/wechat_notification.png" alt="add_ssh_key_gitee" style="width: 750px; height: 1334px;" />
 
 ## 错误及解决方案
 
@@ -134,13 +134,13 @@ jobs:
   <tr>
     <td align="center" style="width: 80px;">
       <a href="https://github.com/antvis">
-        <img src="./images/antv.png" style="width: 40px;"><br>
+        <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/antv.png" style="width: 40px;"><br>
         <sub>蚂蚁金服 - 数据可视化</sub>
       </a>
     </td>
     <td align="center" style="width: 80px;">
       <a href="https://github.com/doocs">
-        <img src="./images/doocs.png" style="width: 40px;"><br>
+        <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/doocs.png" style="width: 40px;"><br>
         <sub>Doocs 技术社区</sub>
       </a>
     </td>
@@ -171,6 +171,25 @@ jobs:
 
 查看更多用户，请访问 https://github.com/search?q=yanglbme%2Fgitee-pages-action&type=code 。
 
+## 联系我
+
+<table>
+  <tr>
+    <td align="center" style="width: 200px;">
+      <a href="https://github.com/doocs">
+        <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/qrcode-for-doocs.jpg" style="width: 400px;"><br>
+        <sub>公众平台</sub>
+      </a><br>
+    </td>
+    <td align="center" style="width: 200px;">
+      <a href="https://github.com/yanglbme">
+        <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/qrcode-for-yanglbme.jpg" style="width: 400px;"><br>
+        <sub>个人微信</sub>
+      </a><br>
+    </td>
+  </tr>
+</table>
+
 ## License
 
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fyanglbme%2Fgitee-pages-action?ref=badge_large)
+MIT
