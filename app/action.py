@@ -79,7 +79,7 @@ class Action:
                           data=form_data,
                           timeout=Action.timeout,
                           verify=False)
-        
+
         # https://assets.gitee.com/assets/encrypt.js
         separator = '$gitee$'
         data = f'{csrf_token}{separator}{self.password}'
@@ -113,10 +113,10 @@ class Action:
                             'login to validate your account.')
         if '"message": "phone_captcha_fail"' in resp.text or \
                 '当前帐号存在异常登录行为，为确认你的有效身份' in resp.text or \
-                '一条包含验证码的信息已发送至你的' in resp.text:
-            raise Exception('Need phone captcha validation, please follow '
-                            'gitee wechat subscription '
-                            'and bind your account.')
+                '一条包含验证码的信息已发送至你的' in resp.text or \
+                'A message containing a verification code has been sent to you' in resp.text:
+            raise Exception('Need phone captcha validation, please follow wechat '
+                            'official account "Gitee" to bind account to turn off authentication.')
         if not ('个人主页' in resp.text or
                 '我的工作台' in resp.text or
                 '我的工作臺' in resp.text or
