@@ -80,7 +80,7 @@ jobs:
 **密钥的配置步骤如下（可展开看示例图）**：
 
 <details>
-<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码)</summary>
+<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub / Gitee 的配置，以保证公私钥成对，否则从 GitHub -> Gitee 的同步将会失败。)</summary>
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/gen_ssh_key.png" alt="gen_ssh_key">
 </details>
 <details>
