@@ -38,9 +38,13 @@ class Action:
 
     @staticmethod
     def get_csrf_token(html: str) -> str:
-        res = re.search(
+        res1 = re.search(
             '<meta name="csrf-param" content="authenticity_token" />(.*?)'
             '<meta name="csrf-token" content="(.*?)" />', html, re.S)
+        res2 = re.search(
+            '<meta content="authenticity_token" name="csrf-param" />(.*?)'
+            '<meta content="(.*?)" name="csrf-token" />', html, re.S)
+        res = res1 or res2
         if res is None:
             raise Exception('Deploy error occurred, '
                             'please check your input `gitee-repo`.')
