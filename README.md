@@ -144,6 +144,12 @@ jobs:
         <sub>Doocs 技术社区</sub>
       </a>
     </td>
+     <td align="center" style="width: 80px;">
+      <a href="https://github.com/Kaiyiwing/qwerty-learner">
+        <img src="https://cdn.jsdelivr.net/gh/Kaiyiwing/qwerty-learner@master/src/assets/logo.svg" style="width: 40px;"><br>
+        <sub>Qwerty Learner</sub>
+      </a>
+    </td>
   </tr>
   <tr>
     <td align="left" style="width: 80px;">
@@ -164,6 +170,12 @@ jobs:
         <li><a href="https://github.com/doocs/advanced-java">doocs/advanced-java</a></li>
         <li><a href="https://github.com/doocs/doocs.github.io">doocs/doocs.github.io</a></li>
         <li><a href="https://github.com/doocs/source-code-hunter">doocs/source-code-hunter</a></li>
+      </ul>
+    </td>
+    <td align="left" style="width: 100px;">
+      <ul>
+        <li><a href="https://github.com/Kaiyiwing/qwerty-learner" style="white-space: nowrap">Qwerty Learner</a></li>
+        <li><a href="https://github.com/Kaiyiwing/qwerty-learner-vscode" style="white-space: nowrap">Qwerty Learner VSCode</a></li>
       </ul>
     </td>
   </tr>
