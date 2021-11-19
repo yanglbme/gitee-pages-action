@@ -4,7 +4,10 @@ import re
 import requests
 import requests.packages.urllib3
 import rsa
+from actions_toolkit import core
 from retry import retry
+
+from app.util import now
 
 PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
 MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY
@@ -46,7 +49,7 @@ class Action:
             '<meta content="(.*?)" name="csrf-token" />', html, re.S)
         res = res1 or res2
         if res is None:
-            raise Exception('Deploy error occurred, '
+            raise Exception(f'[{now()}] Deploy error occurred, '
                             'please check your input `gitee-repo`.')
         return res.group(2)
 
@@ -109,24 +112,25 @@ class Action:
                 '"message": "Invalid email or password."' in resp.text or \
                 '"message": "not_found_in_database"' in resp.text or \
                 '"message": "not_found_and_show_captcha"' in resp.text:
-            raise Exception('Wrong username or password, login failed.')
+            raise Exception(f'[{now()}] Wrong username or password, login failed.')
         if '"message": "captcha_expired"' in resp.text or \
                 '"message": "captcha_fail"' in resp.text:
-            raise Exception('Need captcha validation, please visit '
+            raise Exception(f'[{now()}] Need captcha validation, please visit '
                             'https://gitee.com/login, '
                             'login to validate your account.')
         if '"message": "phone_captcha_fail"' in resp.text or \
                 '当前帐号存在异常登录行为，为确认你的有效身份' in resp.text or \
                 '一条包含验证码的信息已发送至你的' in resp.text or \
                 'A message containing a verification code has been sent to you' in resp.text:
-            raise Exception('Need phone captcha validation, please follow wechat '
+            raise Exception(f'[{now()}] Need phone captcha validation, please follow wechat '
                             'official account "Gitee" to bind account to turn off authentication.')
         if not ('个人主页' in resp.text or
                 '我的工作台' in resp.text or
                 '我的工作臺' in resp.text or
                 'Dashboard - Gitee' in resp.text):
-            raise Exception(f'Unknown error occurred in login method, '
+            raise Exception(f'[{now()}] Unknown error occurred in login method, '
                             f'resp: {resp.text}')
+        core.info(f'[{now()}] Login successfully')
 
     @retry((requests.exceptions.ReadTimeout,
             requests.exceptions.ConnectTimeout,
@@ -159,12 +163,17 @@ class Action:
                                  timeout=Action.timeout,
                                  verify=False)
         if resp.status_code != 200:
-            raise Exception(f'Rebuild page error, '
+            raise Exception(f'[{now()}] Rebuild page error, '
                             f'status code: {resp.status_code}.')
         if '请勿频繁更新部署，稍等1分钟再试试看' in resp.text:
-            raise Exception(f'Do not deploy frequently, '
+            raise Exception(f'[{now()}] Do not deploy frequently, '
                             f'try again one minute later.')
+        core.info(f'[{now()}] Rebuild Gitee Pages successfully')
 
     def run(self):
+        core.info('Gitee Pages Action 🚀\n\n'
+                  '📕 Getting Started Guide: https://github.com/marketplace/actions/gitee-pages-action\n'
+                  '📣 Maintained by Yang Libin: https://github.com/yanglbme\n\n')
         self.login()
         self.rebuild_pages()
+        core.info(f'[{now()}] Success, thanks for using @yanglbme/gitee-pages-action!')
