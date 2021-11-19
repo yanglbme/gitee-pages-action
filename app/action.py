@@ -171,7 +171,7 @@ class Action:
         core.info(f'[{now()}] Rebuild Gitee Pages successfully')
 
     def run(self):
-        core.info('Gitee Pages Action 🚀\n\n'
+        core.info('Welcome to use Gitee Pages Action ❤\n\n'
                   '📕 Getting Started Guide: https://github.com/marketplace/actions/gitee-pages-action\n'
                   '📣 Maintained by Yang Libin: https://github.com/yanglbme\n')
         self.login()
