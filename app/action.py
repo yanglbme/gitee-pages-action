@@ -89,7 +89,7 @@ class Action:
 
         # https://assets.gitee.com/assets/encrypt.js
         separator = '$gitee$'
-        data = f'{csrf_token}{separator}{self.password}'
+        data = f'{csrf_token[-8:]}{separator}{self.password}'
         pubkey = rsa.PublicKey.load_pkcs1_openssl_pem(PUBLIC_KEY.encode())
         encrypt_data = rsa.encrypt(data.encode(), pubkey)
         encrypt_data = base64.b64encode(encrypt_data).decode()
