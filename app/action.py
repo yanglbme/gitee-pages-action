@@ -103,33 +103,31 @@ class Action:
             'encrypt_data[user[password]]': encrypt_data,
             'user[remember_me]': 1
         }
-        resp = self.session.post(url=login_index_url,
-                                 headers=index_headers,
-                                 data=form_data,
-                                 timeout=Action.timeout,
-                                 verify=False)
-        if '"message": "帐号或者密码错误"' in resp.text or \
-                '"message": "Invalid email or password."' in resp.text or \
-                '"message": "not_found_in_database"' in resp.text or \
-                '"message": "not_found_and_show_captcha"' in resp.text:
+        res = self.session.post(url=login_index_url,
+                                headers=index_headers,
+                                data=form_data,
+                                timeout=Action.timeout,
+                                verify=False).text
+
+        case1 = ['"message": "帐号或者密码错误"', '"message": "Invalid email or password."',
+                 '"message": "not_found_in_database"', '"message": "not_found_and_show_captcha"']
+        case2 = ['"message": "captcha_expired"', '"message": "captcha_fail"']
+        case3 = ['"message": "phone_captcha_fail"', '当前帐号存在异常登录行为，为确认你的有效身份',
+                 '一条包含验证码的信息已发送至你的', 'A message containing a verification code has been sent to you']
+        case4 = ['个人主页', '我的工作台', '我的工作臺', 'Dashboard - Gitee']
+
+        if any(e in res for e in case1):
             raise Exception(f'[{now()}] Wrong username or password, login failed.')
-        if '"message": "captcha_expired"' in resp.text or \
-                '"message": "captcha_fail"' in resp.text:
+        if any(e in res for e in case2):
             raise Exception(f'[{now()}] Need captcha validation, please visit '
                             'https://gitee.com/login, '
                             'login to validate your account.')
-        if '"message": "phone_captcha_fail"' in resp.text or \
-                '当前帐号存在异常登录行为，为确认你的有效身份' in resp.text or \
-                '一条包含验证码的信息已发送至你的' in resp.text or \
-                'A message containing a verification code has been sent to you' in resp.text:
+        if any(e in res for e in case3):
             raise Exception(f'[{now()}] Need phone captcha validation, please follow wechat '
                             'official account "Gitee" to bind account to turn off authentication.')
-        if not ('个人主页' in resp.text or
-                '我的工作台' in resp.text or
-                '我的工作臺' in resp.text or
-                'Dashboard - Gitee' in resp.text):
+        if not any(e in res for e in case4):
             raise Exception(f'[{now()}] Unknown error occurred in login method, '
-                            f'resp: {resp.text}')
+                            f'resp: {res}')
         core.info(f'[{now()}] Login successfully')
 
     @retry((requests.exceptions.ReadTimeout,

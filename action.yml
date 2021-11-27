@@ -7,10 +7,10 @@ branding:
 inputs:
   gitee-username:
     description: 'The Gitee username, like yanglbme'
-    require: true
+    required: true
   gitee-password:
     description: 'The Gitee password'
-    require: true
+    required: true
   gitee-repo:
     description: 'The Gitee repository, like doocs/leetcode'
     required: true
@@ -25,7 +25,7 @@ inputs:
   https:
     description: 'Use force https or not'
     required: false
-    default: true
+    default: 'true'
 outputs:
   result:
     description: 'The result of api'
