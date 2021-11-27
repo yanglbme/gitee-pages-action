@@ -1,5 +1,6 @@
 from actions_toolkit import core
 
+from app import log
 from app.action import Action
 
 if __name__ == '__main__':
@@ -14,4 +15,4 @@ if __name__ == '__main__':
         action = Action(username, password, repo, branch, directory, https)
         action.run()
     except Exception as e:
-        core.set_failed(str(e))
+        log.set_failed(str(e))

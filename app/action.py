@@ -4,29 +4,16 @@ import re
 import requests
 import requests.packages.urllib3
 import rsa
-from actions_toolkit import core
 from retry import retry
 
-from app.util import now
-
-PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
-MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDIrn+WB2Yi4ABAL5Tq6E09tumY
-qVTFdpU01kCDUmClczJOCGZriLNMrshmN9NJxazpqizPthwS1OIK3HwRLEP9D3GL
-7gCnvN6lpIpoVwppWd65f/rK2ewv6dstN0fCmtVj4WsLUchWlgNuVTfWljiBK/Dc
-YkfslRZzCq5Fl3ooowIDAQAB
------END PUBLIC KEY-----"""
-
-USER_AGENT = 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 ' \
-             '(KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36'
+from app import log
+from app.const import DOMAIN, USER_AGENT, TIMEOUT, PUBLIC_KEY
 
 requests.packages.urllib3.disable_warnings()
 
 
 class Action:
     """Gitee Pages Action"""
-
-    timeout = 6
-    domain = 'https://gitee.com'
 
     def __init__(self, username: str, password: str,
                  repo: str, branch: str = 'master',
@@ -49,8 +36,7 @@ class Action:
             '<meta content="(.*?)" name="csrf-token" />', html, re.S)
         res = res1 or res2
         if res is None:
-            raise Exception(f'[{now()}] Deploy error occurred, '
-                            'please check your input `gitee-repo`.')
+            raise Exception('Deploy error occurred, please check your input `gitee-repo`.')
         return res.group(2)
 
     @retry((requests.exceptions.ReadTimeout,
@@ -58,8 +44,8 @@ class Action:
             requests.exceptions.ConnectionError),
            tries=3, delay=1, backoff=2)
     def login(self):
-        login_index_url = f'{Action.domain}/login'
-        check_login_url = f'{Action.domain}/check_user_login'
+        login_index_url = f'{DOMAIN}/login'
+        check_login_url = f'{DOMAIN}/check_user_login'
         form_data = {'user_login': self.username}
 
         index_headers = {
@@ -72,7 +58,7 @@ class Action:
 
         resp = self.session.get(url=login_index_url,
                                 headers=index_headers,
-                                timeout=Action.timeout,
+                                timeout=TIMEOUT,
                                 verify=False)
         csrf_token = Action.get_csrf_token(resp.text)
         headers = {
@@ -84,7 +70,7 @@ class Action:
         self.session.post(url=check_login_url,
                           headers=headers,
                           data=form_data,
-                          timeout=Action.timeout,
+                          timeout=TIMEOUT,
                           verify=False)
 
         # https://assets.gitee.com/assets/encrypt.js
@@ -106,7 +92,7 @@ class Action:
         res = self.session.post(url=login_index_url,
                                 headers=index_headers,
                                 data=form_data,
-                                timeout=Action.timeout,
+                                timeout=TIMEOUT,
                                 verify=False).text
 
         case1 = ['"message": "帐号或者密码错误"', '"message": "Invalid email or password."',
@@ -117,18 +103,16 @@ class Action:
         case4 = ['个人主页', '我的工作台', '我的工作臺', 'Dashboard - Gitee']
 
         if any(e in res for e in case1):
-            raise Exception(f'[{now()}] Wrong username or password, login failed.')
+            raise Exception('Wrong username or password, login failed.')
         if any(e in res for e in case2):
-            raise Exception(f'[{now()}] Need captcha validation, please visit '
-                            'https://gitee.com/login, '
-                            'login to validate your account.')
+            raise Exception('Need captcha validation, please visit '
+                            'https://gitee.com/login, login to validate your account.')
         if any(e in res for e in case3):
-            raise Exception(f'[{now()}] Need phone captcha validation, please follow wechat '
+            raise Exception('Need phone captcha validation, please follow wechat '
                             'official account "Gitee" to bind account to turn off authentication.')
         if not any(e in res for e in case4):
-            raise Exception(f'[{now()}] Unknown error occurred in login method, '
-                            f'resp: {res}')
-        core.info(f'[{now()}] Login successfully')
+            raise Exception(f'Unknown error occurred in login method, resp: {res}')
+        log.info('Login successfully')
 
     @retry((requests.exceptions.ReadTimeout,
             requests.exceptions.ConnectTimeout,
@@ -137,7 +121,7 @@ class Action:
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
-        pages_url = f'{Action.domain}/{self.repo}/pages'
+        pages_url = f'{DOMAIN}/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 
         pages = self.session.get(pages_url)
@@ -158,20 +142,18 @@ class Action:
         resp = self.session.post(url=rebuild_url,
                                  headers=headers,
                                  data=form_data,
-                                 timeout=Action.timeout,
+                                 timeout=TIMEOUT,
                                  verify=False)
         if resp.status_code != 200:
-            raise Exception(f'[{now()}] Rebuild page error, '
-                            f'status code: {resp.status_code}.')
+            raise Exception(f'Rebuild page error, status code: {resp.status_code}, resp: {resp.text}')
         if '请勿频繁更新部署，稍等1分钟再试试看' in resp.text:
-            raise Exception(f'[{now()}] Do not deploy frequently, '
-                            f'try again one minute later.')
-        core.info(f'[{now()}] Rebuild Gitee Pages successfully')
+            raise Exception('Do not deploy frequently, try again one minute later.')
+        log.info('Rebuild Gitee Pages successfully')
 
     def run(self):
-        core.info('Welcome to use Gitee Pages Action ❤\n\n'
-                  '📕 Getting Started Guide: https://github.com/marketplace/actions/gitee-pages-action\n'
-                  '📣 Maintained by Yang Libin: https://github.com/yanglbme\n')
+        log.info('Welcome to use Gitee Pages Action ❤\n\n'
+                 '📕 Getting Started Guide: https://github.com/marketplace/actions/gitee-pages-action\n'
+                 '📣 Maintained by Yang Libin: https://github.com/yanglbme\n')
         self.login()
         self.rebuild_pages()
-        core.info(f'[{now()}] Success, thanks for using @yanglbme/gitee-pages-action!')
+        log.info('Success, thanks for using @yanglbme/gitee-pages-action!')
