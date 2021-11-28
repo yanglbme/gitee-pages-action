@@ -85,19 +85,19 @@ jobs:
 密钥的配置步骤如下（可展开看示例图）：
 
 <details>
-<summary>1. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub / Gitee 的配置，以保证公私钥成对，否则从 GitHub -> Gitee 的同步将会失败。)</summary>
+<summary>a. 在命令行终端或 Git Bash 使用命令 <code>ssh-keygen -t rsa -C "youremail@example.com"</code> 生成 SSH Key，注意替换为自己的邮箱。生成的 <code>id_rsa</code> 是私钥，<code>id_rsa.pub</code> 是公钥。(⚠️注意此处不要设置密码，生成的公私钥用于下面 GitHub / Gitee 的配置，以保证公私钥成对，否则从 GitHub -> Gitee 的同步将会失败。)</summary>
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/gen_ssh_key.png" alt="gen_ssh_key">
 </details>
 <details>
-<summary>2. 在 GitHub 项目的「​Settings -> Secrets」路径下配置好命名为 <code>GITEE_RSA_PRIVATE_KEY</code> 和 <code>GITEE_PASSWORD</code> 的两个密钥。其中：<code>GITEE_RSA_PRIVATE_KEY</code> 存放 <code>id_rsa</code> 私钥；<code>GITEE_PASSWORD</code> 存放 Gitee 帐号的密码。</summary>
+<summary>b. 在 GitHub 项目的「Settings -> Secrets」路径下配置好命名为 <code>GITEE_RSA_PRIVATE_KEY</code> 和 <code>GITEE_PASSWORD</code> 的两个密钥。其中：<code>GITEE_RSA_PRIVATE_KEY</code> 存放 <code>id_rsa</code> 私钥；<code>GITEE_PASSWORD</code> 存放 Gitee 帐号的密码。</summary>
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_secrets.png" alt="add_secrets">
 </details>
 <details>
-<summary>3. 在 GitHub 的个人设置页面「<a href="https://github.com/settings/keys">Settings -> SSH and GPG keys</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
+<summary>c. 在 GitHub 的个人设置页面「<a href="https://github.com/settings/keys">Settings -> SSH and GPG keys</a>」配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_ssh_key_github.png" alt="add_ssh_key_github">
 </details>
 <details>
-<summary>4. 在 Gitee 的个人设置页面「<a href="https://gitee.com/profile/sshkeys">安全设置 -> SSH 公钥</a>」​ 配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
+<summary>d. 在 Gitee 的个人设置页面「<a href="https://gitee.com/profile/sshkeys">安全设置 -> SSH 公钥</a>」配置 SSH 公钥（即：<code>id_rsa.pub</code>），命名随意。</summary>
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_ssh_key_gitee.png" alt="add_ssh_key_gitee">
 </details>
 
