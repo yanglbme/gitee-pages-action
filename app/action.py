@@ -6,15 +6,12 @@ import requests.packages.urllib3
 import rsa
 from retry import retry
 
-from app import log
-from app.const import DOMAIN, USER_AGENT, TIMEOUT, PUBLIC_KEY
+from app.const import domain, ua, timeout, pubkey
 
 requests.packages.urllib3.disable_warnings()
 
 
 class Action:
-    """Gitee Pages Action"""
-
     def __init__(self, username: str, password: str,
                  repo: str, branch: str = 'master',
                  directory: str = '', https: str = 'true'):
@@ -44,8 +41,8 @@ class Action:
             requests.exceptions.ConnectionError),
            tries=3, delay=1, backoff=2)
     def login(self):
-        login_index_url = f'{DOMAIN}/login'
-        check_login_url = f'{DOMAIN}/check_user_login'
+        login_index_url = f'{domain}/login'
+        check_login_url = f'{domain}/check_user_login'
         form_data = {'user_login': self.username}
 
         index_headers = {
@@ -53,31 +50,31 @@ class Action:
                       'q=0.9,image/webp,image/apng,*/*;'
                       'q=0.8,application/signed-exchange;v=b3;q=0.9',
             'Host': 'gitee.com',
-            'User-Agent': USER_AGENT
+            'User-Agent': ua
         }
 
         resp = self.session.get(url=login_index_url,
                                 headers=index_headers,
-                                timeout=TIMEOUT,
+                                timeout=timeout,
                                 verify=False)
         csrf_token = Action.get_csrf_token(resp.text)
         headers = {
             'Referer': login_index_url,
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': csrf_token,
-            'User-Agent': USER_AGENT
+            'User-Agent': ua
         }
         self.session.post(url=check_login_url,
                           headers=headers,
                           data=form_data,
-                          timeout=TIMEOUT,
+                          timeout=timeout,
                           verify=False)
 
         # https://assets.gitee.com/assets/encrypt.js
         separator = '$gitee$'
         data = f'{csrf_token[-8:]}{separator}{self.password}'
-        pubkey = rsa.PublicKey.load_pkcs1_openssl_pem(PUBLIC_KEY.encode())
-        encrypt_data = rsa.encrypt(data.encode(), pubkey)
+        pk = rsa.PublicKey.load_pkcs1_openssl_pem(pubkey.encode())
+        encrypt_data = rsa.encrypt(data.encode(), pk)
         encrypt_data = base64.b64encode(encrypt_data).decode()
 
         form_data = {
@@ -92,7 +89,7 @@ class Action:
         res = self.session.post(url=login_index_url,
                                 headers=index_headers,
                                 data=form_data,
-                                timeout=TIMEOUT,
+                                timeout=timeout,
                                 verify=False).text
 
         case1 = ['"message": "帐号或者密码错误"', '"message": "Invalid email or password."',
@@ -112,7 +109,6 @@ class Action:
                             'official account "Gitee" to bind account to turn off authentication.')
         if not any(e in res for e in case4):
             raise Exception(f'Unknown error occurred in login method, resp: {res}')
-        log.info('Login successfully')
 
     @retry((requests.exceptions.ReadTimeout,
             requests.exceptions.ConnectTimeout,
@@ -121,7 +117,7 @@ class Action:
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
-        pages_url = f'{DOMAIN}/{self.repo}/pages'
+        pages_url = f'{domain}/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 
         pages = self.session.get(pages_url)
@@ -132,7 +128,7 @@ class Action:
             'Referer': pages_url,
             'X-Requested-With': 'XMLHttpRequest',
             'X-CSRF-Token': csrf_token,
-            'User-Agent': USER_AGENT
+            'User-Agent': ua
         }
         form_data = {
             'branch': self.branch,
@@ -142,18 +138,13 @@ class Action:
         resp = self.session.post(url=rebuild_url,
                                  headers=headers,
                                  data=form_data,
-                                 timeout=TIMEOUT,
+                                 timeout=timeout,
                                  verify=False)
         if resp.status_code != 200:
             raise Exception(f'Rebuild page error, status code: {resp.status_code}, resp: {resp.text}')
         if '请勿频繁更新部署，稍等1分钟再试试看' in resp.text:
             raise Exception('Do not deploy frequently, try again one minute later.')
-        log.info('Rebuild Gitee Pages successfully')
 
     def run(self):
-        log.info('Welcome to use Gitee Pages Action ❤\n\n'
-                 '📕 Getting Started Guide: https://github.com/marketplace/actions/gitee-pages-action\n'
-                 '📣 Maintained by Yang Libin: https://github.com/yanglbme\n')
         self.login()
         self.rebuild_pages()
-        log.info('Success, thanks for using @yanglbme/gitee-pages-action!')
