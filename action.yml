@@ -1,34 +1,31 @@
-name: 'Gitee Pages Action'
-description: 'GitHub Action for Gitee Pages'
-author: 'yanglbme'
+name: "Gitee Pages Action"
+description: "GitHub Action for Gitee Pages"
+author: "yanglbme"
 branding:
-  icon: 'git-branch'
-  color: 'gray-dark'
+  icon: "git-branch"
+  color: "gray-dark"
 inputs:
   gitee-username:
-    description: 'The Gitee username, like yanglbme'
+    description: "The Gitee username, like yanglbme"
     required: true
   gitee-password:
-    description: 'The Gitee password'
+    description: "The Gitee password"
     required: true
   gitee-repo:
-    description: 'The Gitee repository, like doocs/leetcode'
+    description: "The Gitee repository, like doocs/leetcode"
     required: true
   branch:
-    description: 'Which branch to build'
+    description: "Which branch to build"
     required: false
-    default: 'master'
+    default: "master"
   directory:
-    description: 'Which directory to build'
+    description: "Which directory to build"
     required: false
-    default: ''
+    default: ""
   https:
-    description: 'Use force https or not'
+    description: "Use force https or not"
     required: false
-    default: 'true'
-outputs:
-  result:
-    description: 'The result of api'
+    default: "true"
 runs:
-  using: 'docker'
-  image: 'Dockerfile'
+  using: "docker"
+  image: "Dockerfile"
