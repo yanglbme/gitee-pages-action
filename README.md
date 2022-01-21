@@ -156,7 +156,7 @@ Run yanglbme/gitee-pages-action@main
      push:
        branches: [main, master]
    ```
-   更多触发事件，请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)。
+   更多触发事件，请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)
 
 ## 谁在使用
 
@@ -211,7 +211,7 @@ Run yanglbme/gitee-pages-action@main
   </tr>
 </table>
 
-查看更多用户，请访问 https://github.com/search?q=yanglbme%2Fgitee-pages-action&type=code 。
+查看更多用户，请访问 https://cs.github.com/?scopeName=All+repos&scope=&q=yanglbme%2Fgitee-pages-action
 
 ## 联系我
 
