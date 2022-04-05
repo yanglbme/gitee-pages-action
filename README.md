@@ -103,7 +103,11 @@ jobs:
 <img src="https://cdn.jsdelivr.net/gh/yanglbme/gitee-pages-action@main/images/add_ssh_key_gitee.png" alt="add_ssh_key_gitee">
 </details>
 
-### 3. 运行结果
+### 3. 关注 Gitee 公众号
+
+关注 Gitee 官方公众号，并绑定个人 Gitee 帐号，用于接收帐号登录通知、以及绕过短信验证码校验，见[错误及解决方案](#错误及解决方案) 第 3 点。
+
+### 4. 运行结果
 
 如果一切配置正常，并成功触发 [Gitee Pages Action](https://github.com/marketplace/actions/gitee-pages-action) ，Gitee Pages Action 会打印出成功的结果。并且，我们会在 Gitee 公众号收到一条登录通知。这是 Gitee Pages Action 程序帮我们登录到 Gitee 官网，并为我们点击了项目的部署按钮。
 
@@ -144,6 +148,7 @@ Run yanglbme/gitee-pages-action@main
 | 8   | Error: HTTPSConnectionPool(host='gitee.com', port=443): Read timed out. (read timeout=6)<br><br>Error: HTTPSConnectionPool(host='gitee.com', port=443): Max retries exceeded with url: /login (Caused by ConnectTimeoutError(<urllib3.connection.HTTPSConnection object at 0x7f6c889d42e8>, 'Connection to gitee.com timed out. (connect timeout=6)')) | 网络请求出错，请尝试 Re-run jobs 。[#27](https://github.com/yanglbme/gitee-pages-action/issues/27)                                                      |
 | 9   | git@github.com: Permission denied (publickey).<br>fatal: Could not read from remote repository.<br>Please make sure you have the correct access rights and the repository exists..                                                                                                                                                                     | SSH 公私钥配置有问题，或是使用了带密码的私钥，请参照上文提及的密钥配置步骤进行相应配置。[#29](https://github.com/yanglbme/gitee-pages-action/issues/29) |
 | 10  | Hexo Gitee Pages 自动部署站点问题。                                                                                                                                                                                                                                                                                                                    | [@No5972](https://github.com/No5972) 详细给出了一种解决方案。[#34](https://github.com/yanglbme/gitee-pages-action/issues/34)                            |
+| 11  | "/root/.ssh/id_rsa": invalid format.                                                                                                                                                                                                                                                                                                                   | 操作系统环境不同，生成 ssh key 的方式可能有所差别，尝试添加 `-m PEM` 参数试试。[#49](https://github.com/yanglbme/gitee-pages-action/issues/49)          |
 | ... | ...                                                                                                                                                                                                                                                                                                                                                    | ...                                                                                                                                                     |
 
 注：
