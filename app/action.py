@@ -16,6 +16,7 @@ class Action:
                  repo: str, branch: str = 'master',
                  directory: str = '', https: str = 'true'):
         self.session = requests.session()
+        self.session.keep_alive = False
         self.username = username
         self.password = password
         self.repo = repo.strip('/')
@@ -38,8 +39,10 @@ class Action:
 
     @retry((requests.exceptions.ReadTimeout,
             requests.exceptions.ConnectTimeout,
-            requests.exceptions.ConnectionError),
-           tries=3, delay=1, backoff=2)
+            requests.exceptions.ConnectionError,
+            requests.Timeout,
+            requests.RequestException),
+           tries=4, delay=2, backoff=3)
     def login(self):
         login_index_url = f'{domain}/login'
         check_login_url = f'{domain}/check_user_login'
@@ -112,8 +115,10 @@ class Action:
 
     @retry((requests.exceptions.ReadTimeout,
             requests.exceptions.ConnectTimeout,
-            requests.exceptions.ConnectionError),
-           tries=3, delay=1)
+            requests.exceptions.ConnectionError,
+            requests.Timeout,
+            requests.RequestException),
+           tries=4, delay=2, backoff=3)
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
