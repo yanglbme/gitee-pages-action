@@ -6,6 +6,7 @@ import requests.packages.urllib3
 import rsa
 from retry import retry
 
+from app import log
 from app.const import domain, ua, timeout, pubkey
 
 requests.packages.urllib3.disable_warnings()
@@ -147,8 +148,16 @@ class Action:
                                  verify=False)
         if resp.status_code != 200:
             raise Exception(f'Rebuild page error, status code: {resp.status_code}, resp: {resp.text}')
-        if '请勿频繁更新部署，稍等1分钟再试试看' in resp.text:
+        html = resp.text
+        if '正在部署，请耐心等待' in html:
+            return
+        if '部署失败' in html and '错误信息' in html:
+            res = re.search('<p>错误信息:(.*?)<\\\/p>', html, re.S)
+            if res:
+                raise Exception(res.group(1).strip())
+        if '请勿频繁更新部署，稍等1分钟再试试看' in html:
             raise Exception('Do not deploy frequently, try again one minute later.')
+        log.warning(f'Unknown html: {html}')
 
     def run(self):
         self.login()

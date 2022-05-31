@@ -12,6 +12,10 @@ def info(s: str = ''):
     core.info(f'[{now()}] {s}')
 
 
+def warning(s: str = ''):
+    core.warning(f'[{now()}] {s}')
+
+
 def error(s: str = ''):
     core.info(f'[{now()}] {s}')
 
