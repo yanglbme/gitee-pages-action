@@ -80,7 +80,19 @@ jobs:
           branch: main
 ```
 
-先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。
+注：
+
+1. 这里我先使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action) 将 GitHub 仓库同步到 Gitee 仓库，再使用 [yanglbme/gitee-pages-action](https://github.com/yanglbme/gitee-pages-action) 实现 Gitee Pages 的自动部署。如果你已经通过其它的方式，将代码 push 至 Gitee 了，那么可以不使用 [wearerequired/git-mirror-action](https://github.com/wearerequired/git-mirror-action)，也不需要配置 `GITEE_RSA_PRIVATE_KEY`。
+1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
+1. `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
+1. 对于 `gitee-repo` 参数，如果你的项目在 Gitee 的地址为 https://gitee.com/用户名/xxx ，那么 `gitee-repo` 就填写为 `用户名/xxx`。[#54](https://github.com/yanglbme/gitee-pages-action/issues/54)
+1. 对于 workflow 的触发事件，你可以根据项目实际情况，指定为其它的触发事件。比如：
+   ```bash
+   on:
+     push:
+       branches: [main, master]
+   ```
+   更多触发事件，请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)
 
 ### 2. 配置密钥
 
@@ -150,18 +162,6 @@ Run yanglbme/gitee-pages-action@main
 | 10  | Hexo Gitee Pages 自动部署站点问题。                                                                                                                                                                                                                                                                                                                    | [@No5972](https://github.com/No5972) 详细给出了一种解决方案。[#34](https://github.com/yanglbme/gitee-pages-action/issues/34)                            |
 | 11  | "/root/.ssh/id_rsa": invalid format.                                                                                                                                                                                                                                                                                                                   | 操作系统环境不同，生成 ssh key 的方式可能有所差别，尝试添加 `-m PEM` 参数试试。[#49](https://github.com/yanglbme/gitee-pages-action/issues/49)          |
 | ... | ...                                                                                                                                                                                                                                                                                                                                                    | ...                                                                                                                                                     |
-
-注：
-
-1. `branch` 参数默认是 `master`，如果你是部署在 `gh-pages`(或者 `main`) 分支等等，务必指定 `branch: gh-pages`(或者 `branch: main`)。
-1. `branch` 对应的分支，必须在仓库中实际存在，请不要随意（不）指定分支，否则可能导致 Gitee Pages 站点出现 404 无法访问的情况。
-1. 对于 workflow 的触发事件，你可以根据项目实际情况，指定为其它的触发事件。比如：
-   ```bash
-   on:
-     push:
-       branches: [main, master]
-   ```
-   更多触发事件，请参考 [Events that trigger workflows](https://docs.github.com/en/free-pro-team@latest/actions/reference/events-that-trigger-workflows)
 
 ## 谁在使用
 
