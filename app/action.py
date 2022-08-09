@@ -20,7 +20,7 @@ class Action:
         self.session.keep_alive = False
         self.username = username
         self.password = password
-        self.repo = repo.strip('/')
+        self.repo = repo.replace(domain, '').strip('/')
         self.branch = branch
         self.directory = directory
         self.https = https
@@ -123,6 +123,7 @@ class Action:
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
+        
         pages_url = f'{domain}/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 
