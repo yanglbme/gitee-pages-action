@@ -1,10 +1,10 @@
-<p align="center">
+<p style="text-align: center;">
   <a href="https://github.com/yanglbme/gitee-pages-action">
-    <img src="./images/logo.png">
+    <img src="./images/logo.png" alt="gitee-pages-action">
   </a>
 </p>
 
-<p align="center">
+<p style="text-align: center;">
   <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Lint?color=42b883&label=lint&style=flat-square" alt="lint"></a>
   <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Sync?color=42b883&label=sync&style=flat-square" alt="lint"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanglbme/gitee-pages-action?color=42b883&style=flat-square" alt="license"></a>
@@ -17,7 +17,7 @@
   <a href="https://gitee.com/yanglbme/gitee-pages-action"><img src="https://shields.io/badge/%E2%AD%90-Gitee-42b883?style=flat-square" alt="gitee"></a>
 </p>
 
-<h1 align="center">Gitee Pages Action</h1>
+<h1 style="text-align: center;">Gitee Pages Action</h1>
 
 由于 Gitee Pages 的访问速度很快，很多朋友会选择 Gitee Pages 部署项目（如：个人博客、开源项目国内镜像站点）。但是它不像 GitHub Pages 那样，一提交代码就能自动更新 Pages，因为 Gitee 的自动部署属于 Gitee Pages Pro 的服务。
 
