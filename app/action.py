@@ -2,14 +2,14 @@ import base64
 import re
 
 import requests
-import requests.packages.urllib3
 import rsa
+import urllib3
 from retry import retry
 
 from app import log
 from app.const import domain, ua, timeout, pubkey
 
-requests.packages.urllib3.disable_warnings()
+urllib3.disable_warnings()
 
 
 class Action:
@@ -123,7 +123,7 @@ class Action:
     def rebuild_pages(self):
         if '/' not in self.repo:
             self.repo = f'{self.username}/{self.repo}'
-        
+
         pages_url = f'{domain}/{self.repo}/pages'
         rebuild_url = f'{pages_url}/rebuild'
 

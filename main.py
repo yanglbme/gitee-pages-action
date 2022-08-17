@@ -18,9 +18,9 @@ try:
     password = core.get_input('gitee-password', required=True)
     repo = core.get_input('gitee-repo', required=True)
 
-    branch = core.get_input('branch') or 'master'
-    directory = core.get_input('directory') or ''
-    https = core.get_input('https') or 'true'
+    branch = core.get_input('branch')
+    directory = core.get_input('directory')
+    https = core.get_input('https')
 
     action = Action(username, password, repo, branch, directory, https)
 
