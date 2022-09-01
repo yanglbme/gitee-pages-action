@@ -1,10 +1,10 @@
-<p style="text-align: center;">
+<p align="center">
   <a href="https://github.com/yanglbme/gitee-pages-action">
     <img src="./images/logo.png" alt="gitee-pages-action">
   </a>
 </p>
 
-<p style="text-align: center;">
+<p align="center">
   <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Lint?color=42b883&label=lint&style=flat-square" alt="lint"></a>
   <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Sync?color=42b883&label=sync&style=flat-square" alt="lint"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanglbme/gitee-pages-action?color=42b883&style=flat-square" alt="license"></a>
@@ -17,7 +17,7 @@
   <a href="https://gitee.com/yanglbme/gitee-pages-action"><img src="https://shields.io/badge/%E2%AD%90-Gitee-42b883?style=flat-square" alt="gitee"></a>
 </p>
 
-<h1 style="text-align: center;">Gitee Pages Action</h1>
+<h1 align="center">Gitee Pages Action</h1>
 
 由于 Gitee Pages 的访问速度很快，很多朋友会选择 Gitee Pages 部署项目（如：个人博客、开源项目国内镜像站点）。但是它不像 GitHub Pages 那样，一提交代码就能自动更新 Pages，因为 Gitee 的自动部署属于 Gitee Pages Pro 的服务。
 
@@ -25,7 +25,10 @@
 
 欢迎体验，若有使用上的问题，也欢迎随时提交 [Issues](https://github.com/yanglbme/gitee-pages-action/issues) 反馈。
 
-注：首次需要**手动**登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
+注：
+
+1. 首次需要**手动**登录 Gitee ，点击“启动”进行 Gitee Pages 服务的部署。
+1. 由于 Gitee 改版，使用 Gitee Pages 前需要先完成实名认证。
 
 ## 入参
 
@@ -167,19 +170,19 @@ Run yanglbme/gitee-pages-action@main
 
 <table>
   <tr>
-    <td style="width: 80px; text-align: center;">
+    <td align="center" style="width: 80px;">
       <a href="https://github.com/antvis">
         <img src="./images/antv.png" style="width: 40px;" alt="蚂蚁金服"><br>
         <sub>蚂蚁金服 - 数据可视化</sub>
       </a>
     </td>
-    <td style="width: 80px; text-align: center;">
+    <td align="center" style="width: 80px;">
       <a href="https://github.com/doocs">
         <img src="./images/doocs.png" style="width: 40px;" alt="Doocs"><br>
         <sub>Doocs 技术社区</sub>
       </a>
     </td>
-     <td style="width: 80px; text-align: center;">
+     <td align="center" style="width: 80px;">
       <a href="https://github.com/Kaiyiwing/qwerty-learner">
         <img src="./images/qwerty-learner-logo.svg" style="width: 40px;" alt="Qwerty Learner"><br>
         <sub>Qwerty Learner</sub>
@@ -224,13 +227,13 @@ Run yanglbme/gitee-pages-action@main
 
 <table>
   <tr>
-    <td style="width: 200px; text-align: center;">
+    <td align="center" style="width: 200px;">
       <a href="https://github.com/doocs">
         <img src="./images/qrcode-for-doocs.jpg" style="width: 400px;" alt="公众号"><br>
         <sub>公众平台</sub>
       </a><br>
     </td>
-    <td style="width: 200px; text-align: center;">
+    <td align="center" style="width: 200px;">
       <a href="https://github.com/yanglbme">
         <img src="./images/qrcode-for-yanglbme.jpg" style="width: 400px;" alt="微信"><br>
         <sub>个人微信</sub>
