@@ -5,16 +5,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Lint?color=42b883&label=lint&style=flat-square" alt="lint"></a>
-  <a href="https://github.com/yanglbme/gitee-pages-action/actions"><img src="https://img.shields.io/github/workflow/status/yanglbme/gitee-pages-action/Sync?color=42b883&label=sync&style=flat-square" alt="lint"></a>
   <a href="./LICENSE"><img src="https://img.shields.io/github/license/yanglbme/gitee-pages-action?color=42b883&style=flat-square" alt="license"></a>
   <a href="../../releases"><img src="https://img.shields.io/github/v/release/yanglbme/gitee-pages-action?color=42b883&style=flat-square" alt="release"></a>
   <a href="#谁在使用"><img src="https://shields.io/badge/who's-using-42b883?style=flat-square" alt="users"></a>
-  <a href="#错误及解决方案"><img src="https://shields.io/badge/faq-here-42b883?style=flat-square" alt="users"></a><br>
+  <a href="#错误及解决方案"><img src="https://shields.io/badge/faq-here-42b883?style=flat-square" alt="users"></a>
   <a href="https://github.com/yanglbme/gitee-pages-action"><img src="https://shields.io/badge/%E2%AD%90-GitHub-42b883?style=flat-square" alt="github"></a>
+  <a href="https://gitee.com/yanglbme/gitee-pages-action"><img src="https://shields.io/badge/%E2%AD%90-Gitee-42b883?style=flat-square" alt="gitee"></a><br>
   <a href="https://github.com/yanglbme/gitee-pages-action/stargazers"><img src="https://img.shields.io/github/stars/yanglbme/gitee-pages-action?color=42b883&logo=github&style=flat-square" alt="stars"></a>
   <a href="https://github.com/yanglbme/gitee-pages-action/network/members"><img src="https://img.shields.io/github/forks/yanglbme/gitee-pages-action?color=42b883&logo=github&style=flat-square" alt="forks"></a>
-  <a href="https://gitee.com/yanglbme/gitee-pages-action"><img src="https://shields.io/badge/%E2%AD%90-Gitee-42b883?style=flat-square" alt="gitee"></a>
 </p>
 
 <h1 align="center">Gitee Pages Action</h1>
