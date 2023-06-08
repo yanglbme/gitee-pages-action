@@ -158,6 +158,8 @@ class Action:
                 raise Exception(res.group(1).strip())
         if '请勿频繁更新部署，稍等1分钟再试试看' in html:
             raise Exception('Do not deploy frequently, try again one minute later.')
+        if '仓库持有者未实名认证，不允许部署 pages 服务' in html:
+            raise Exception('The repository owner is not authenticated and is not allowed to deploy pages services.')
         log.warning(f'Unknown html: {html}')
 
     def run(self):
