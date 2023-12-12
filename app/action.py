@@ -35,7 +35,7 @@ class Action:
             '<meta content="(.*?)" name="csrf-token" />', html, re.S)
         res = res1 or res2
         if res is None:
-            raise Exception('Deploy error occurred, please check your input `gitee-repo`.')
+            raise Exception('Deploy error occurred, please re-run job or check your input `gitee-repo`.')
         return res.group(2)
 
     @retry((requests.exceptions.ReadTimeout,
